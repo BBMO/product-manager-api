@@ -15,9 +15,8 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        //
         return response()->json([
-            'results' => ProductCategory::with('categories')->get()
+            'results' => ProductCategory::whereNull('Co_Poducto_Categoria_Poducto_Categoria')->with('categories')->get()
         ]);
     }
 

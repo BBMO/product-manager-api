@@ -13,12 +13,14 @@ class Product extends Model
 
     protected $table = 't00300_producto';
 
+    protected $primaryKey = 'Co_Producto';
+
     protected $fillable = [
         'Nb_Producto',
     ];
 
     public function category()
     {
-        return $this->belongsTo('ProductCategory');
+        return $this->belongsTo(ProductCategory::class, 'Co_Producto');
     }
 }

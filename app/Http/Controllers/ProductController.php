@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
@@ -14,17 +16,9 @@ class ProductController extends Controller
     public function index()
     {
         //
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'results' => Product::all()
+        ]);
     }
 
     /**
@@ -36,7 +30,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        $product = new Product;
 
+        $product->Nb_Producto = $request->name;
+        $product->Co_Poducto_Categoria = $request->category;
+        $product->St_Activo = $request->active;
+
+        $product->save();
     }
 
     /**
@@ -48,18 +48,11 @@ class ProductController extends Controller
     public function show($id)
     {
         //
+        return response()->json([
+            'results' => Product::find($id)
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -71,6 +64,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $product = Product::find($id);
+        $product->Nb_Producto = $request->name;
+        $product->Co_Poducto_Categoria = $request->category;
+        $product->St_Activo = $request->active;
+
+        $product->save();
     }
 
     /**
@@ -82,5 +81,6 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+        Product::destroy($id);
     }
 }

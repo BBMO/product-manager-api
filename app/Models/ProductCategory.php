@@ -24,18 +24,17 @@ class ProductCategory extends Model
     ];
 
     public function products() {
-        return $this->hasMany('Product');
+        return $this->hasMany(Product::class, 'Co_Poducto_Categoria');
     }
 
     public function categories()
     {
-        return $this->hasMany(ProductCategory::class, 'Co_Poducto_Categoria_Poducto_Categoria');
-    }
-
-    public function childCategories()
-    {
         return $this->hasMany(ProductCategory::class, 'Co_Poducto_Categoria_Poducto_Categoria')->with('categories');
     }
 
+    /*public function childCategories()
+    {
+        return $this->hasMany(ProductCategory::class, 'Co_Poducto_Categoria_Poducto_Categoria')->with('categories');
+    }*/
 
 }
