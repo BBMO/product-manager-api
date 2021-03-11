@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
-
+use Illuminate\Support\Facades\DB;
 class ProductCategoryController extends Controller
 {
     /**
@@ -44,11 +44,18 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //
+        if($request->get_products == 1) {
+            $results = ProductCategory::with('products')->find($id)->get()->dd();
+        }
+        else {
+            $results = ProductCategory::with('categories')->find($id)->get();
+        }
+
         return response()->json([
-            'results' => ProductCategory::with('categories')->get()->find(['id' => $id])
+            'results' => $results
         ]);
     }
 

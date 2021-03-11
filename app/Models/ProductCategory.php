@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class ProductCategory extends Model
 {
@@ -36,5 +37,34 @@ class ProductCategory extends Model
     {
         return $this->hasMany(ProductCategory::class, 'Co_Poducto_Categoria_Poducto_Categoria')->with('categories');
     }*/
+
+
+    //Executed when loading model
+    public static function boot()
+    {
+        parent::boot();
+
+        $sql = '';
+
+        DB::listen(function ($query) use (&$sql){
+
+        });
+
+        ProductCategory::created(function($category) use (&$sql) {
+
+        });
+
+        ProductCategory::retrieved(function($category) use (&$sql) {
+
+        });
+
+        ProductCategory::updated(function($category) use (&$sql) {
+
+        });
+
+        ProductCategory::deleted(function($category) use (&$sql) {
+
+        });
+    }
 
 }
