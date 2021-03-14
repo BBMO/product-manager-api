@@ -35,7 +35,15 @@ class ProductCategoryController extends Controller
         $category->Co_Poducto_Categoria_Poducto_Categoria = $request->parent;
         $category->St_Activo = $request->active;
 
-        $category->save();
+        if($category->save()) {
+            $result = ProductCategory::find($category->Co_Poducto_Categoria);
+        } else {
+            $result = 'error';
+        }
+
+        return response()->json([
+            'results' => $result
+        ]);
     }
 
     /**
@@ -48,10 +56,10 @@ class ProductCategoryController extends Controller
     {
         //
         if($request->get_products == 1) {
-            $results = ProductCategory::with('products')->find($id)->get()->dd();
+            $results = ProductCategory::with('products')->get()->find($id);
         }
         else {
-            $results = ProductCategory::with('categories')->find($id)->get();
+            $results = ProductCategory::with('categories')->get()->find($id);
         }
 
         return response()->json([
@@ -71,11 +79,19 @@ class ProductCategoryController extends Controller
     {
         //
         $category = ProductCategory::find($id);
-        $category->Nb_Poducto_Categoria = $request->name;
-        $category->Co_Poducto_Categoria_Poducto_Categoria = $request->parent;
-        $category->St_Activo = $request->active;
+        $category->Nb_Poducto_Categoria = (isset($request->name)) ? $request->name : $category->Nb_Poducto_Categoria;
+        $category->Co_Poducto_Categoria_Poducto_Categoria = (isset($request->parent)) ? $request->parent : $category->Co_Poducto_Categoria_Poducto_Categoria;
+        $category->St_Activo = (isset($request->active)) ? $request->active : $category->St_Activo;
 
-        $category->save();
+        if($category->save()) {
+            $result = ProductCategory::find($category->Co_Poducto_Categoria);
+        } else {
+            $result = 'error';
+        }
+
+        return response()->json([
+            'results' => $result
+        ]);
     }
 
     /**
@@ -88,5 +104,9 @@ class ProductCategoryController extends Controller
     {
         //
         ProductCategory::destroy($id);
+
+        return response()->json([
+            'results' => 'deteted'
+        ]);
     }
 }

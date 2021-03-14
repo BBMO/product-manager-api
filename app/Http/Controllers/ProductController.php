@@ -36,7 +36,15 @@ class ProductController extends Controller
         $product->Co_Poducto_Categoria = $request->category;
         $product->St_Activo = $request->active;
 
-        $product->save();
+        if($product->save()) {
+            $result = Product::find($product->Co_Producto);
+        } else {
+            $result = 'error';
+        }
+
+        return response()->json([
+            'results' => $result
+        ]);
     }
 
     /**
@@ -65,11 +73,19 @@ class ProductController extends Controller
     {
         //
         $product = Product::find($id);
-        $product->Nb_Producto = $request->name;
-        $product->Co_Poducto_Categoria = $request->category;
-        $product->St_Activo = $request->active;
+        $product->Nb_Producto = (isset($request->name)) ? $request->name : $product->Nb_Producto;
+        $product->Co_Poducto_Categoria = (isset($request->category)) ? $request->category : $product->Co_Poducto_Categoria;
+        $product->St_Activo = (isset($request->active)) ? $request->active : $product->St_Activo;
 
-        $product->save();
+        if($product->save()) {
+            $result = Product::find($product->Co_Producto);
+        } else {
+            $result = 'error';
+        }
+
+        return response()->json([
+            'results' => $result
+        ]);
     }
 
     /**
@@ -82,5 +98,9 @@ class ProductController extends Controller
     {
         //
         Product::destroy($id);
+
+        return response()->json([
+            'results' => 'deteted'
+        ]);
     }
 }

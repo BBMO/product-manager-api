@@ -11,7 +11,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public $timestamps = false;
+
     protected $table = 't00100_usuario';
+
+    protected $primaryKey = 'Co_Usuario';
 
     protected $fillable = [
         'Nb_Usuario',
