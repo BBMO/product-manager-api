@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 
@@ -30,21 +31,19 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-        $product = new Product;
+        $productCategory = ProductCategory::find($request->category);
 
-        $product->Nb_Producto = $request->name;
-        $product->Co_Poducto_Categoria = $request->category;
-        $product->St_Activo = $request->active;
-
-        if($product->save()) {
-            $result = Product::find($product->Co_Producto);
+        if(is_null($productCategory)) {
+            return response()->json(['Mensaje'=>'No existe la categoria'],404);
         } else {
-            $result = 'error';
+            $product = new Product;
+            $product->Nb_Producto = $request->name;
+            $product->Co_Poducto_Categoria = $request->category;
+            $product->St_Activo = $request->active;
+            $product->save();
+            return response()->json(Product::find($product->Co_Producto),202);
         }
 
-        return response()->json([
-            'results' => $result
-        ]);
     }
 
     /**
@@ -72,20 +71,24 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+
         $product = Product::find($id);
-        $product->Nb_Producto = (isset($request->name)) ? $request->name : $product->Nb_Producto;
-        $product->Co_Poducto_Categoria = (isset($request->category)) ? $request->category : $product->Co_Poducto_Categoria;
-        $product->St_Activo = (isset($request->active)) ? $request->active : $product->St_Activo;
-
-        if($product->save()) {
-            $result = Product::find($product->Co_Producto);
+        if(is_null($product)){
+            return response()->json(['Mensaje'=>'No existe el producto'],404);
         } else {
-            $result = 'error';
-        }
+            $productCategory = ProductCategory::find($request->category);
 
-        return response()->json([
-            'results' => $result
-        ]);
+            if(is_null($productCategory)) {
+                return response()->json(['Mensaje'=>'No existe la categoria'],404);
+            } else {
+                $product->Nb_Producto = (isset($request->name)) ? $request->name : $product->Nb_Producto;
+                $product->Co_Poducto_Categoria = (isset($request->category)) ? $request->category : $product->Co_Poducto_Categoria;
+                $product->St_Activo = (isset($request->active)) ? $request->active : $product->St_Activo;
+                $product->save();
+                return response()->json(Product::find($product->Co_Producto),202);
+            }
+        }
     }
 
     /**
