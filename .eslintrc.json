@@ -1,0 +1,68 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "amd": true,
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "standard",
+        "plugin:flowtype/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "legacyDecorators": true
+        },
+        "ecmaVersion": 2019,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "flowtype"
+    ],
+    "rules": {
+        "camelcase": 0,
+        "comma-dangle": 0,
+        "quotes": [
+            2,
+            "single",
+            { "allowTemplateLiterals": true }
+        ],
+        "no-unused-vars": 0,
+        "no-unreachable": 1,
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "no-console": [
+            "warn", {
+                "allow": ["warn", "error"]
+            }
+        ],
+        "react/display-name": 0,
+        "import/no-webpack-loader-syntax": 0,
+        "standard/no-callback-literal": 0,
+        "spaced-comment": 1,
+        "multiline-ternary": 0
+    },
+    "settings": {
+        "flowtype": {
+            "onlyFilesWithFlowAnnotation": true
+        },
+        "react": {
+            "pragma": "React",
+            "version": "16.8",
+            "flowVersion": "0.89"
+        }
+    }
+}
