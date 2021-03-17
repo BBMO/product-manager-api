@@ -36,19 +36,15 @@
                 text-align: center;
                 margin: 1em 0;
                 padding: 0 0 0 4px;
-                /* border-left: 0px solid #02a658; */
-            }
-
-            #title strong {
-                /* border-bottom: 1px solid #02a658; */
             }
 
             .body {
                 text-align: center;
                 position: relative;
                 display: flex;
-                max-width: 800px;
                 margin: 0 auto;
+                margin-bottom: 50px;
+                margin-top: 50px;
             }
 
             .img {
@@ -67,7 +63,7 @@
             .bottom-bar {
                 height: 80px;
                 position: fixed;
-                bottom: 0;
+                top: 0;
                 left: 0;
                 right: 0;
                 padding: 0 1em;
@@ -107,16 +103,265 @@
             .menu a:hover {
                 border-bottom: 2px solid #02a658;
             }
+
+            #input {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .container {
+                width: 100%;
+            }
+
+            #list-container {
+                overflow-y: scroll;
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                width: 100%;
+                flex-wrap: wrap;
+                display: grid;
+                grid-template-columns: 25% 25% 25% 25%;
+                grid-gap: 2em;
+                margin-top: 2em;
+            }
+
+            .item {
+                background-color: #fff;
+                padding: 1em;
+            }
+            @media all and (max-width: 1920px) {
+                #list-container {
+                    grid-gap: 1em;
+                }
+            }
+
+            @media all and (max-width: 1600px) {
+                #list-container {
+                    grid-template-columns: 50% 50%;
+                    grid-gap: 1em;
+                }
+            }
+
+            @media all and (max-width: 720px) {
+                #list-container {
+                    grid-template-columns: 100%;
+                    grid-gap: 1em;
+                    padding: 0 1em;
+                }
+            }
         </style>
     </head>
     <body class="antialiased">
-        <img class="img" src="/img1.jpeg" />
+        <!-- <img class="img" src="/img1.jpeg" /> -->
 
         <h1 id="title">Product Manager <strong>API</strong></h1>
+        <div class='container'>
+            <div id='input'>
+                <label for='cat'>Select Category</label>
+                <br />
+                <select id='cat'>
+                    <option>type a</option>
+                    <option>type b</option>
+                    <option>type c</option>
+                </select>
+            </div>
+
+            <div id='list-container'>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+                <div class='item'>
+                    Co_Producto
+                    <br />
+                    Nb_Producto
+                    <br />
+                    Co_Poducto_Categoria
+                    <br />
+                    St_Activo
+                    <br />
+                    Co_Auditoria (link to details)
+                </div>
+            </div>
+        </div>
 
         <div class="bottom-bar">
             <div id='bottom_logo'></div>
-
             <div class="menu">
                 <a class="a1" href="login">Login</a>
                 <a class="a1" href="login">Signup</a>
