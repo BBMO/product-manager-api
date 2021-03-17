@@ -7,10 +7,10 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
-const inProduction = (process.env.NODE_ENV === 'production');
+const inProduction = false // just for dev
 
 let entries = {
-    'app': './resources/src/App.js'
+    'welcome': './resources/src/pages/welcome.js'
 };
 
 module.exports = {
@@ -49,7 +49,6 @@ module.exports = {
                             lessOptions: {
                                 paths: [
                                     path.resolve(__dirname, path.resolve(__dirname, "node_modules")),
-                                    path.resolve(__dirname, path.resolve(__dirname, "Resources/styles")),
                                 ],
                             },
                             sourceMap: !inProduction
@@ -124,8 +123,6 @@ module.exports = {
     ],
     resolve: {
         modules: [
-            path.resolve(__dirname, 'Resources/js'),
-            path.resolve(__dirname, 'Resources/styles'),
             path.resolve(__dirname, 'node_modules'),
             path.resolve(__dirname)
         ]

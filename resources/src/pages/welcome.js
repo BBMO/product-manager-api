@@ -2,11 +2,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import styles from './welcome.less'
+
 const AppContainer = () => {
-    return <h1>App container</h1>
+    return <h1 className='h1'>App container</h1>
 }
 
-export default function () {
+window.onload = () => {
     ReactDOM.render(
         <AppContainer />
         ,

@@ -1,3 +1,4 @@
 {
-  "app.js": "/assets/app.bundle.js"
+  "welcome.css": "/assets/welcome.css",
+  "welcome.js": "/assets/welcome.bundle.js"
 }
