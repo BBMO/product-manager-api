@@ -1,10 +1,12 @@
-// class Api {
+class Api {
+    baseUrl = 'baseUri'
 
-    // baseUrl = ''
+    constructor () {}
 
-    //static getCetegory () {
-        // return fetch(this.baseUrl/ algo)
-    // }
-// }
+    getCetegory () {
+        // fetch
+        console.log(`${this.baseUrl}/api/category`)
+    }
+}
 
-// export default Api
+module.exports = Api
