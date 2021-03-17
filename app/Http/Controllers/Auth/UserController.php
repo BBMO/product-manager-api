@@ -31,27 +31,30 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        $user = new User;
+        
+        $email = User::where('Tx_Email', '=', $request->email)->first();
+        $name = User::where('Nb_Usuario', '=', $request->name)->first();
 
-        $user->Nb_Usuario = $request->name;
-        $user->Tx_Email = $request->email;
-        $user->Nu_Movil = $request->phone;
-        $user->Tx_Clave = bcrypt($request->password);
-        $user->Tx_Patron = (isset($request->pattern)) ? $request->pattern : '';
-        $user->Nu_Intentos = (isset($request->attempts)) ? $request->attempts : 1;
-        $user->Fe_Recuperacion = date('Y-m-d H:i:s');
-        $user->St_Bloqueo = (isset($request->block)) ? $request->block : 0;
-        $user->St_Activo = (isset($request->active)) ? $request->active : 1;
-
-        if($user->save()) {
-            $result = User::find($user->Co_Usuario);
+        if(is_null($email)) {
+            if(is_null($name)) {
+                $user = new User;
+                $user->Nb_Usuario = $request->name;
+                $user->Tx_Email = $request->email;
+                $user->Nu_Movil = $request->phone;
+                $user->Tx_Clave = bcrypt($request->password);
+                $user->Tx_Patron = (isset($request->pattern)) ? $request->pattern : '';
+                $user->Nu_Intentos = (isset($request->attempts)) ? $request->attempts : 1;
+                $user->Fe_Recuperacion = date('Y-m-d H:i:s');
+                $user->St_Bloqueo = (isset($request->block)) ? $request->block : 0;
+                $user->St_Activo = (isset($request->active)) ? $request->active : 1;
+                $user->save();
+                return response()->json(User::find($user->Co_Usuario),202);
+            } else {
+                return response()->json(['Mensaje'=>'Nombre de usuario ya existe'],404);
+            }
         } else {
-            $result = 'error';
+            return response()->json(['Mensaje'=>'Email ya se uso'],404);
         }
-
-        return response()->json([
-            'results' => $result
-        ]);
     }
 
     /**
