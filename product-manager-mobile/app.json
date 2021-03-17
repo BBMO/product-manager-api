@@ -1,0 +1,12 @@
+{
+  "name": "product-manager-mobile",
+  "displayName": "product-manager-mobile",
+  "expo": {
+    "name": "product-manager-mobile",
+    "slug": "product-manager-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
