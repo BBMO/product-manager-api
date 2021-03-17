@@ -104,11 +104,23 @@
                 border-bottom: 2px solid #02a658;
             }
 
-            #input {
+            .menu a.active {
+                border-bottom: 2px solid #02a658;
+            }
+
+            .input-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+            }
+
+            .input {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                margin: 0 2em;
             }
 
             .container {
@@ -159,7 +171,8 @@
 
         <h1 id="title">Product Manager <strong>API</strong></h1>
         <div class='container'>
-            <div id='input'>
+            <div class='input-container'>
+            <div class='input'>
                 <label for='cat'>Select Category</label>
                 <br />
                 <select id='cat'>
@@ -167,6 +180,16 @@
                     <option>type b</option>
                     <option>type c</option>
                 </select>
+            </div>
+            <div class='input'>
+                <label for='cat'>Sub Category</label>
+                <br />
+                <select id='cat'>
+                    <option>type a</option>
+                    <option>type b</option>
+                    <option>type c</option>
+                </select>
+            </div>
             </div>
 
             <div id='list-container'>
@@ -365,7 +388,7 @@
             <div class="menu">
                 <a class="a1" href="login">Login</a>
                 <a class="a1" href="login">Signup</a>
-                <a class="a1" href="/list">Products</a>
+                <a class="a1 active" href="/list">Products</a>
             </div>
         </div>
     </body>
