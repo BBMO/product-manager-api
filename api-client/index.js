@@ -4,7 +4,7 @@ class Api {
     baseUrl = 'http://127.0.0.1:8000'
 
     constructor () {}
-
+    
     getUser () {
         axios.get(`${this.baseUrl}/api/user`)
             .then(function (response) {
