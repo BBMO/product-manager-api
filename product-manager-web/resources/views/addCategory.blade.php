@@ -247,10 +247,10 @@
 <div class="bottom-bar">
     <div id='bottom_logo'></div>
     <div class="menu">
-{{--        <a class="a1" href="login">Login</a>--}}
-{{--        <a class="a1" href="login">Signup</a>--}}
-        <a class="a1" href="/list">Listing</a>
-        <a class="a1 active" href="/list">Add Category</a>
+        <a class="a1" href="/">Home</a>
+        <a class="a1" href="/list">Products</a>
+        <a class="a1 active" href="/add-category">Add category</a>
+        <a class="a1" href="/categories">Categories</a>
     </div>
 </div>
 </body>

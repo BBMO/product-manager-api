@@ -21,8 +21,8 @@ Route::get('/list', function () {
     return view('list');
 });
 
-Route::get('/category-detail/:id', function () {
-    return view('categoryDetails');
+Route::get('/category/{id}', function ($id) {
+    return view('categoryDetails', [ 'id' => $id ]);
 });
 
 Route::get('/add-category', function () {
