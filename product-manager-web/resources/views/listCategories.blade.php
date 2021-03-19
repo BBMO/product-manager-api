@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
     <title>Laravel</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -116,111 +118,101 @@
         }
 
 
-        .hidden {
-            opacity: 0;
-            max-height: 1px;
-            overflow: hidden;
-            display: block;
-            visibility: hidden;
-        }
-
-        label {
-            font-weight: bolder;
-        }
-
-        #submit {
-            height: 45px;
-            width: 120px;
-            border-radius: 4px;
-            margin-right: auto;
-            margin-left: auto;
-            transition: all 0.2s linear;
-            border-bottom: 2px solid #C2C2C2;
-        }
-
-        #submit:hover {
-            opacity: 0.5;
-        }
-
-        #submit:active,
-        #submit:focus {
-            border-bottom: 0px solid #C2C2C2;
-        }
-
-        input {
-            height: 30px;
-            border-radius: 4px;
-            outline: none;
-            margin: 2em 0;
-            padding-left: 1em;
-            padding-right: 1em;
-        }
-
-        form,.form {
+        #list-container {
+            overflow-y: scroll;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+            grid-gap: 2em;
+            margin-top: 2em;
         }
 
-        #parent-form {
-            display: none;
+        .item {
+            background-color: #fff;
+            padding: 1em;
+        }
+        @media all and (max-width: 1920px) {
+            #list-container {
+                grid-gap: 1em;
+            }
+        }
+
+        @media all and (max-width: 1600px) {
+            #list-container {
+                grid-template-columns: 50% 50%;
+                grid-gap: 1em;
+            }
+        }
+
+        @media all and (max-width: 720px) {
+            #list-container {
+                grid-template-columns: 100%;
+                grid-gap: 1em;
+                padding: 0 1em;
+            }
         }
     </style>
     <script>
-        window.onload = () => {
-            let $checkbox = document.getElementsByClassName('checkbox')[0]
-            let $parentform = document.getElementById('parent-form')
-
-            console.log('here: ', $parentform)
-
-            $parentform.style.display = 'none'
-
-            $checkbox.addEventListener('change', function () {
-                if (this.checked) {
-                    $parentform.style.display = 'block'
-                } else {
-                    $parentform.style.display = 'none'
-                }
-            })
+        const getCategories = async () => {
+            try {
+                const { data } = await axios.get('/api/category')
+                renderCagegory(data.results)
+                return data.results
+            } catch (ex) {
+                console.error(ex)
+                return []
+            }
         }
+
+        const renderCagegory = (results) => {
+            let $container = document.getElementById('container')
+
+            console.log(results)
+
+            const optionsItems = results.map(({
+                                                  Co_Poducto_Categoria,
+                                                  Nb_Poducto_Categoria,
+                                                  Co_Poducto_Categoria_Poducto_Categoria,
+                                                  St_Activo,
+                                                  categories
+            }) => {
+                return `
+                    <div id='list-container' class='active-${St_Activo}'>
+                        <div class='item'>
+                            Co_Poducto_Categoria: ${Co_Poducto_Categoria}
+                            <br />
+                            Nb_Poducto_Categoria: ${Nb_Poducto_Categoria}
+                            <br />
+                            Co_Poducto_Categoria_Poducto_Categoria: ${Co_Poducto_Categoria_Poducto_Categoria}
+                            <br />
+                            categories: ${categories.length}
+                        </div>
+                    </div>
+                `
+            }).join('')
+
+            $container.innerHTML  = optionsItems
+        }
+
+        window.onload = () => {
+            getCategories()
+        }
+
     </script>
 </head>
 <body class="antialiased">
 <h1 id="title">Product Manager <strong>API</strong></h1>
 <div id="container">
-
-    <div class="form">
-        <label for="checkbox">
-            Is Children Category
-            <input class="checkbox" id="checkbox" name="checkbox" type="checkbox" />
-        </label>
-    </div>
-
-    <form method="put" action="/api/category/:id-here" enctype="application/x-www-form-urlencoded">
-        <label for="name">
-            Category name:
-            <br />
-            <input required id="name" type="text" name="name" />
-        </label>
-
-        {{--        <label id="parent-form" for="parent">Choose a car:--}}
-        {{--            <select name="parent" id="parent">--}}
-        {{--                <option value="1">1</option>--}}
-        {{--            </select>--}}
-        {{--        </label>--}}
-
-        <br />
-        <input id="submit" type="submit" value="submit" />
-
-        <input class="hidden" required id="active" type="number" name="active" value="1" />
-    </form>
 </div>
 <div class="bottom-bar">
     <div id='bottom_logo'></div>
     <div class="menu">
-        {{--        <a class="a1" href="login">Login</a>--}}
-        {{--        <a class="a1" href="login">Signup</a>--}}
+{{--        <a class="a1" href="login">Login</a>--}}
+{{--        <a class="a1" href="login">Signup</a>--}}
         <a class="a1" href="/list">Listing</a>
         <a class="a1 active" href="/list">Add Category</a>
     </div>

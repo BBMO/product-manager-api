@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
     <title>Laravel</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -162,23 +164,49 @@
             justify-content: center;
             align-items: center;
         }
-
-        #parent-form {
-            display: none;
-        }
     </style>
     <script>
+        const getCategories = async () => {
+            try {
+                const { data } = await axios.get('/api/category')
+                renderCagegory(data.results)
+                return data.results
+            } catch (ex) {
+                console.error(ex)
+                return []
+            }
+        }
+
+        const renderCagegory = (results) => {
+            let $container = document.getElementById('checkbox-container')
+
+            const optionsItems = results.map(({ Co_Poducto_Categoria, Nb_Poducto_Categoria }) => {
+                return `<option value='${Co_Poducto_Categoria}'>${Nb_Poducto_Categoria}</option>`
+            }).join('')
+
+            $container.innerHTML  = `
+                <label id="parent-form" for="parent">
+                    Choose a parent category:
+                    <select name="parent" id="parent">
+                        ${optionsItems}
+                    </select>
+                </label>
+            `
+        }
+
+        const removeCheck = () => {
+            let $checkbox = document.getElementById('parent-form');
+            $checkbox.parentNode.removeChild($checkbox);
+        }
+
         window.onload = () => {
             let $checkbox = document.getElementsByClassName('checkbox')[0]
-            let $parentform = document.getElementById('parent-form')
-
-            $parentform.style.display = 'none'
 
             $checkbox.addEventListener('change', function () {
                 if (this.checked) {
-                    $parentform.style.display = 'block'
+                    getCategories()
                 } else {
-                    $parentform.style.display = 'none'
+                    removeCheck()
                 }
             })
         }
@@ -202,11 +230,7 @@
             <input required id="name" type="text" name="name" />
         </label>
 
-{{--        <label id="parent-form" for="parent">Choose a car:--}}
-{{--            <select name="parent" id="parent">--}}
-{{--                <option value="1">1</option>--}}
-{{--            </select>--}}
-{{--        </label>--}}
+        <div id="checkbox-container" value="false"></div>
 
         <br />
         <input id="submit" type="submit" value="submit" />
