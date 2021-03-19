@@ -21,6 +21,14 @@ Route::get('/list', function () {
     return view('list');
 });
 
+Route::get('/category-detail/:id', function () {
+    return view('categoryDetails');
+});
+
+Route::get('/add-category', function () {
+    return view('addCategory');
+});
+
 // Route::get('/', function () {
 //     return view('listar');
 // });
