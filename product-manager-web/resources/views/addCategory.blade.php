@@ -27,8 +27,12 @@
             /*align-items: center;*/
             /*flex-direction: column;*/
             margin-top: 100px;
-            min-height: 100vh;
+            min-height: 85.6vh;
             min-width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         #title {
@@ -37,7 +41,7 @@
             font-size: 1.875em;
             line-height: 40px;
             text-align: center;
-            margin: 1em 0;
+            margin-bottom: 1em;
             padding: 0 0 0 4px;
         }
 
@@ -64,7 +68,7 @@
         }
 
         .bottom-bar {
-            height: 80px;
+            height: 11.4vh;
             position: fixed;
             top: 0;
             left: 0;
@@ -137,16 +141,7 @@
             margin-right: auto;
             margin-left: auto;
             transition: all 0.2s linear;
-            border-bottom: 2px solid #C2C2C2;
-        }
-
-        #submit:hover {
-            opacity: 0.5;
-        }
-
-        #submit:active,
-        #submit:focus {
-            border-bottom: 0px solid #C2C2C2;
+            box-shadow: 1px 3px 2px #9D9DA0;
         }
 
         input {
@@ -163,6 +158,15 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        .form-control {
+            width : 240px;
+        }
+
+        .form-select {
+            width : 240px;
+            padding: 10px 2px 10px 10px;
         }
     </style>
     <script>
@@ -187,7 +191,7 @@
             $container.innerHTML  = `
                 <label id="parent-form" for="parent">
                     Choose a parent category:
-                    <select name="parent" id="parent">
+                    <select class="form-select" name="parent" id="parent">
                         ${optionsItems}
                     </select>
                 </label>
@@ -217,23 +221,25 @@
 <div id="container">
 
     <div class="form">
-        <label for="checkbox">
-            Is Children Category
-            <input class="checkbox" id="checkbox" name="checkbox" type="checkbox" />
-        </label>
+        <div class="mb-3 form-check">
+            <label class="form-check-label" for="checkbox">
+                <input type="checkbox" class="form-check-input checkbox" id="checkbox" name="checkbox" />
+                Is Children Category
+            </label>
+        </div>
     </div>
 
     <form method="post" action="/api/category" enctype="application/x-www-form-urlencoded">
         <label for="name">
             Category name:
             <br />
-            <input required id="name" type="text" name="name" />
+            <input class="form-control" required id="name" type="text" name="name" />
         </label>
 
         <div id="checkbox-container" value="false"></div>
 
         <br />
-        <input id="submit" type="submit" value="submit" />
+        <input id="submit" type="submit" value="submit" class="btn btn-success" />
 
         <input class="hidden" required id="active" type="number" name="active" value="1" />
     </form>
