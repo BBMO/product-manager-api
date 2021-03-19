@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -165,6 +165,25 @@
                 }
             }
         </style>
+        <script>
+            let active_category = null
+
+            const getCategories = async () => {
+                try {
+                    const { data } = await axios.get('/api/category')
+                    return data.results || []
+                } catch (ex) {
+                    console.error(ex)
+                    return []
+                }
+            }
+
+            window.onload = async () => {
+                const $cat = document.getElementById('cat')
+                const categories = await getCategories()
+                console.log(categories)
+            }
+        </script>
     </head>
     <body class="antialiased">
         <!-- <img class="img" src="/img1.jpeg" /> -->
@@ -175,200 +194,16 @@
             <div class='input'>
                 <label for='cat'>Select Category</label>
                 <br />
-                <select id='cat'>
-                    <option>type a</option>
-                    <option>type b</option>
-                    <option>type c</option>
-                </select>
+                <select id='cat'></select>
             </div>
             <div class='input'>
                 <label for='cat'>Sub Category</label>
                 <br />
-                <select id='cat'>
-                    <option>type a</option>
-                    <option>type b</option>
-                    <option>type c</option>
-                </select>
+                <select id='sub-cat'></select>
             </div>
             </div>
 
             <div id='list-container'>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
                 <div class='item'>
                     Co_Producto
                     <br />
@@ -386,9 +221,10 @@
         <div class="bottom-bar">
             <div id='bottom_logo'></div>
             <div class="menu">
-                <a class="a1" href="login">Login</a>
-                <a class="a1" href="login">Signup</a>
+                <a class="a1" href="/">Home</a>
                 <a class="a1 active" href="/list">Products</a>
+                <a class="a1" href="/add-category">Add category</a>
+                <a class="a1" href="/categories">Categories</a>
             </div>
         </div>
     </body>

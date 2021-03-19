@@ -104,6 +104,10 @@
                 text-align: center;
             }
 
+            .menu a.active {
+                border-bottom: 2px solid #02a658;
+            }
+
             .menu a:hover {
                 border-bottom: 2px solid #02a658;
             }
@@ -118,8 +122,7 @@
             <div id='bottom_logo'></div>
 
             <div class="menu">
-{{--                <a class="a1" href="login">Login</a>--}}
-{{--                <a class="a1" href="login">Signup</a>--}}
+                <a class="a1 active" href="/">Home</a>
                 <a class="a1" href="/list">Products</a>
                 <a class="a1" href="/add-category">Add category</a>
                 <a class="a1" href="/categories">Categories</a>

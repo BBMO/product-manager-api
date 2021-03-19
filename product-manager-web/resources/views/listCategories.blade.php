@@ -155,6 +155,15 @@
                 padding: 0 1em;
             }
         }
+
+        .item {
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .item:hover {
+            border: 1px solid #02a658;
+            color: #000 !important;
+        }
     </style>
     <script>
         const getCategories = async () => {
@@ -182,7 +191,9 @@
             }) => {
                 return `
                     <div id='list-container' class='active-${St_Activo}'>
-                        <div class='item'>
+                        <a href="/category/${Co_Poducto_Categoria}" class='item'>
+                            St_Activo: ${St_Activo ? 'true' : 'false'}
+                            <br />
                             Co_Poducto_Categoria: ${Co_Poducto_Categoria}
                             <br />
                             Nb_Poducto_Categoria: ${Nb_Poducto_Categoria}
@@ -190,7 +201,7 @@
                             Co_Poducto_Categoria_Poducto_Categoria: ${Co_Poducto_Categoria_Poducto_Categoria}
                             <br />
                             categories: ${categories.length}
-                        </div>
+                        </a>
                     </div>
                 `
             }).join('')
@@ -211,10 +222,10 @@
 <div class="bottom-bar">
     <div id='bottom_logo'></div>
     <div class="menu">
-{{--        <a class="a1" href="login">Login</a>--}}
-{{--        <a class="a1" href="login">Signup</a>--}}
-        <a class="a1" href="/list">Listing</a>
-        <a class="a1 active" href="/list">Add Category</a>
+        <a class="a1" href="/">Home</a>
+        <a class="a1" href="/list">Products</a>
+        <a class="a1" href="/add-category">Add category</a>
+        <a class="a1 active" href="/categories">Categories</a>
     </div>
 </div>
 </body>
