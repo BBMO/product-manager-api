@@ -60,8 +60,9 @@ class Handler extends ExceptionHandler
                     $operation = 'update';
                 }
 
+                var_dump($table);
                 $audit = new Audit;
-                $audit->Nb_Tabla = $table;
+                $audit->Nb_Tabla = '';
                 $audit->Co_Tipo_Operacion = $operation;
                 $audit->Tx_Sentencia = $sql;
                 $audit->Co_Usuario = (isset($_SESSION['user'])) ? $_SESSION['user']->Co_Usuario : 0;
