@@ -186,6 +186,16 @@
         <script>
             let active_category = null
 
+            const getProducts = async () => {
+                try {
+                    const { data } = await axios.get('/api/product')
+                    return data.results || []
+                } catch (ex) {
+                    console.error(ex)
+                    return []
+                }
+            }
+
             const getCategories = async () => {
                 try {
                     const { data } = await axios.get('/api/category')
@@ -196,15 +206,87 @@
                 }
             }
 
+            const renderItem = cat => {
+                return `
+                        <div class="item" data-cat='${cat.Co_Poducto_Categoria}'>
+                            Co_Producto: ${cat.Co_Producto}
+                            <br />
+                            Nb_Producto: ${cat.Nb_Producto}
+                            <br />
+                            Co_Poducto_Categoria: ${cat.Co_Poducto_Categoria}
+                            <br />
+                            St_Activo: ${cat.St_Activo}
+                            <br />
+                            Co_Auditoria: ${cat.Co_Auditoria}
+                            <br />
+                        </div>
+                    `
+            }
+
             window.onload = async () => {
                 const $cat = document.getElementById('cat')
+                const $subCat = document.getElementById('sub-cat')
+                const $producsContainer = document.getElementById('list-container')
                 const categories = await getCategories()
-                console.log(categories)
+                const products = await getProducts()
+
+                $cat.innerHTML = `
+                    <option value='all'>All categories</option>
+                    ${categories.map(({ Co_Poducto_Categoria, Nb_Poducto_Categoria }) => (`<option value="${Co_Poducto_Categoria}">${Nb_Poducto_Categoria}</option>`))}
+                `;
+
+                $subCat.innerHTML = `<option value='all'>All Subcategories</option>`;
+
+                $cat.setAttribute('value', 'all')
+
+                $producsContainer.innerHTML = products.map(prod => {
+                    return renderItem(prod)
+                })
+
+                $subCat.addEventListener('change', function() {
+                    const $elms = document.getElementsByClassName('item');
+                    const subCategories = categories.find(cat => {
+                        if (`${cat.Co_Poducto_Categoria}` === `${this.value}`) {
+                            return cat.categories
+                        }
+                        return null
+                    })
+                })
+
+                $cat.addEventListener('change', function() {
+                    const $elms = document.getElementsByClassName('item');
+                    const subCategories = categories.find(cat => {
+                        if (`${cat.Co_Poducto_Categoria}` === `${this.value}`) {
+                            return cat.categories
+                        }
+                        return null
+                    })
+
+                    if (subCategories && subCategories.categories) {
+                        $subCat.innerHTML = `
+                            <option value='all'>All Subcategories</option>
+                            ${subCategories.categories.map(({ Co_Poducto_Categoria, Nb_Poducto_Categoria }) => (`<option value="${Co_Poducto_Categoria}">${Nb_Poducto_Categoria}</option>`))}
+                        `;
+                    } else {
+                        $subCat.innerHTML = `<option value='all'>All Subcategories</option>`;
+                    }
+
+                    for (let i = 0; i < $elms.length; i++) {
+                        if (this.value === 'all') {
+                            $elms[i].style.display = 'block'
+                        } else {
+                            if ($elms[i].getAttribute('data-cat') !== this.value) {
+                                $elms[i].style.display = 'none'
+                            } else {
+                                $elms[i].style.display = 'block'
+                            }
+                        }
+                    }
+                })
             }
         </script>
     </head>
     <body class="antialiased">
-        <!-- <img class="img" src="/img1.jpeg" /> -->
 
         <h1 id="title">Product Manager <strong>API</strong></h1>
         <div class='container'>
@@ -215,24 +297,13 @@
                 <select class="form-select" id='cat'></select>
             </div>
             <div class='input'>
-                <label class="form-label" for='cat'>Sub Category</label>
+                <label for='sub-cat'>Sub Category</label>
                 <br />
                 <select class="form-select" id='sub-cat'></select>
             </div>
             </div>
 
             <div id='list-container'>
-                <div class='item'>
-                    Co_Producto
-                    <br />
-                    Nb_Producto
-                    <br />
-                    Co_Poducto_Categoria
-                    <br />
-                    St_Activo
-                    <br />
-                    Co_Auditoria (link to details)
-                </div>
             </div>
         </div>
 
