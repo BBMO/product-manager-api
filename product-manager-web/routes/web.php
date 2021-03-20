@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,14 @@ Route::get('/product/{id}', function ($id) {
 
 Route::get('/categories', function () {
     return view('listCategories');
+});
+
+Route::get('/audit', function () {
+    $list = DB::table('t99999_auditoria')->paginate(15);
+    return view('audit', compact('list'));
+});
+
+Route::get('/audit/{id}', function ($id) {
+    $audit = \App\Models\Audit::find($id);
+    return view('singleAudit', compact('audit'));
 });
