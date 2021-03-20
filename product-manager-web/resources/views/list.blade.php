@@ -356,6 +356,7 @@
             <div id='bottom_logo'></div>
             <div class="menu">
                 <a class="a1" href="/">Home</a>
+                <a class="a1" href="/audit">Audit</a>
                 <a class="a1 active" href="/list">Products</a>
                 <a class="a1" href="/add-product">Add product</a>
                 <a class="a1" href="/add-category">Add category</a>
