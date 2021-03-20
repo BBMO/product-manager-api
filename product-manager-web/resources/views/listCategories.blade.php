@@ -133,7 +133,7 @@
 
         .item {
             padding: 1em;
-            height: 200px
+            height: 200px;
         }
 
         #container {
@@ -150,19 +150,20 @@
             margin-left: 10%;
         }
 
+        .card{
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border: 1px solid #02a658;
+            color: #000 !important;
+        }
+
         @media all and (max-width: 768px) {
             #container {
                 grid-template-columns: 100%;
             }
-        }
-
-        .item {
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
-        .item:hover {
-            border: 1px solid #02a658;
-            color: #000 !important;
         }
     </style>
     <script>
@@ -180,6 +181,8 @@
         const renderCagegory = (results) => {
             let $container = document.getElementById('container')
 
+            console.log(results)
+
             const optionsItems = results.map(({
                                                   Co_Poducto_Categoria,
                                                   Nb_Poducto_Categoria,
@@ -193,7 +196,7 @@
                             <a href="/category/${Co_Poducto_Categoria}" class='card-header'>
                                 Nb_Poducto_Categoria: ${Nb_Poducto_Categoria}
                             </a>
-                            <a href="/category/${Co_Poducto_Categoria}" class='item'>
+                            <a href="/category/${Co_Poducto_Categoria}" class='item card-body'>
                                 St_Activo: ${St_Activo ? 'true' : 'false'}
                                 <br />
                                 Co_Poducto_Categoria: ${Co_Poducto_Categoria}
