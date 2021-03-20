@@ -14,19 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});*/
+});
 
 
 Route::get('/users', 'Auth\UserController@index');
-Route::post('/user', 'Auth\UserController@storeUser');
-Route::get('/user/{id}', 'Auth\UserController@show');
-Route::put('/user/{id}', 'Auth\UserController@update');
-Route::delete('/user/{id}', 'Auth\UserController@destroy');
-/*Route::post('/login', 'Auth\UserController@login');
+Route::post('/users', 'Auth\UserController@store');
+Route::get('/users/{id}', 'Auth\UserController@show');
+Route::put('/users/{id}', 'Auth\UserController@update');
+Route::delete('/users/{id}', 'Auth\UserController@destroy');
+Route::post('/login', 'Auth\UserController@login');
 Route::get('/logout', 'Auth\UserController@logout');
-Route::get('/isLogged', 'Auth\UserController@isLogged');*/
+Route::get('/isLogged', 'Auth\UserController@isLogged');
 
 Route::get('/category', 'ProductCategoryController@index');
 Route::post('/category', 'ProductCategoryController@store');
