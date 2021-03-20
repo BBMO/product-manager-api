@@ -1,43 +1,37 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet } from 'react-native';
 
 class Home extends Component {
-    handleListing = () => {
-        this.props.navigation.push('ProductList')
+    goProduct = id => {
+        this.props.navigation.push('', {
+            id
+        });
     }
 
-    handleCategories = () => {
-        this.props.navigation.push('CategoryList')
+    async getProducts () {
+        try {
+            const result = await fetch(`http://127.0.0.1:8000/api/product`)
+            console.log(result)
+        } catch (ex) {
+            return Promise.reject(ex.message)
+        }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        try {
+            const data = await this.getProducts()
+            console.log(data)
+        } catch (ex) {
+            console.error(ex)
+        }
     }
 
     render () {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>
-                    Product Manager API
+                    Categories
                 </Text>
-
-                <View style={styles.imgContainer}>
-                    <Image
-                        style={styles.img}
-                        source={require('../assets/images/img1.jpeg')}
-                    />
-
-                    <TouchableOpacity style={styles.btn} onPress={this.handleListing}>
-                        <Text style={styles.listBtn}>Products</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.btn} onPress={this.handleCategories}>
-                        <Text style={styles.listBtn}>Categories</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View style={styles.version}>
-                    <Text style={styles.versionText}>V0.5.0</Text>
-                </View>
             </View>
         );
     }
