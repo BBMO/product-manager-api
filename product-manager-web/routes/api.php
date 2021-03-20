@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/user', 'Auth\UserController@index');
-Route::post('/user', 'Auth\UserController@store');
+Route::post('/user', 'Auth\UserController@storeUser');
 Route::get('/user/{id}', 'Auth\UserController@show');
 Route::put('/user/{id}', 'Auth\UserController@update');
 Route::delete('/user/{id}', 'Auth\UserController@destroy');
