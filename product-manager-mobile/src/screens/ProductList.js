@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 class Home extends Component {
+    state = {
+        prod: []
+    }
+
     goProduct = id => {
         this.props.navigation.push('', {
             id
@@ -10,8 +14,12 @@ class Home extends Component {
 
     async getProducts () {
         try {
-            const result = await fetch(`http://0.0.0.0:8000/api/product`)
-            console.log(result)
+            const result = await fetch(`https://garzon-product-manager-unet.herokuapp.com/api/product`)
+            const prods = await result.json()
+            console.log(prods.results)
+            this.setState({
+                prod: prods.results
+            })
         } catch (ex) {
             return Promise.reject(ex.message)
 
@@ -33,6 +41,23 @@ class Home extends Component {
                 <Text style={styles.title}>
                     Products
                 </Text>
+                <FlatList
+                    ListEmptyComponent={() => (<View><Text style={{
+                        color: '#434343',
+                        fontSize: 18,
+                        padding: 20
+                    }}>loading...</Text></View>)}
+                    data={this.state.prod}
+                    renderItem={({ item, i }) => (
+                        <View key={i}>
+                            <Text style={{
+                                color: '#000000',
+                                fontSize: 24,
+                                margin: 8,
+                            }}>{item.Nb_Producto} - id: {item.Co_Producto}</Text>
+                        </View>
+                    )}
+                />
             </View>
         );
     }
