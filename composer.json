@@ -61,5 +61,9 @@
     "post-create-project-cmd": [
       "@php product-manager-web/artisan key:generate --ansi"
     ]
-  }
+  },
+  "warmup": [
+    "php product-manager-web/artisan config:cache",
+    "php product-manager-web/artisan route:cache"
+  ]
 }
