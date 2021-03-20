@@ -41,9 +41,8 @@ class ProductController extends Controller
             $product->Co_Poducto_Categoria = $request->category;
             $product->St_Activo = $request->active;
             $product->save();
-            return response()->json(Product::find($product->Co_Producto),202);
+            return redirect('/product/' . $product->Co_Producto);
         }
-
     }
 
     /**
@@ -54,7 +53,6 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
         return response()->json([
             'results' => Product::find($id)
         ]);
@@ -71,8 +69,6 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
-
-
         $product = Product::find($id);
         if(is_null($product)){
             return response()->json(['Mensaje'=>'No existe el producto'],404);
@@ -86,7 +82,8 @@ class ProductController extends Controller
                 $product->Co_Poducto_Categoria = (isset($request->category)) ? $request->category : $product->Co_Poducto_Categoria;
                 $product->St_Activo = (isset($request->active)) ? $request->active : $product->St_Activo;
                 $product->save();
-                return response()->json(Product::find($product->Co_Producto),202);
+                return redirect('/product/' . $product->Co_Producto);
+                // return response()->json(Product::find($product->Co_Producto),202);
             }
         }
     }

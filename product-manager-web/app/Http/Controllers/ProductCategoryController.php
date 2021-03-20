@@ -41,9 +41,11 @@ class ProductCategoryController extends Controller
             $result = 'error';
         }
 
-        return response()->json([
-            'results' => $result
-        ]);
+        return redirect('/category/' . $category->Co_Poducto_Categoria);
+
+        // return response()->json([
+        //     'results' => $result
+        // ]);
     }
 
     /**
@@ -89,9 +91,10 @@ class ProductCategoryController extends Controller
             $result = 'error';
         }
 
-        return response()->json([
-            'results' => $result
-        ]);
+        return redirect('/category/' . $category->Co_Poducto_Categoria);
+        // return response()->json([
+        //     'results' => $result
+        // ]);
     }
 
     /**

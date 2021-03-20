@@ -239,6 +239,7 @@
 
         window.onload = () => {
             getProductById()
+
             document.getElementById('form-info').addEventListener('submit', handleSubmit)
         }
 
