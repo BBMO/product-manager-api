@@ -45,8 +45,8 @@ jobs:
 
       - name: Deploy to Firebase Hosting on PUSH
         uses: FirebaseExtended/action-hosting-deploy@v0
-          with:
-            repoToken: "${{ secrets.GITHUB_TOKEN }}"
-            firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
-            expires: 30d
-            projectId: product-manager-58901
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          expires: 30d
+          projectId: product-manager-58901
