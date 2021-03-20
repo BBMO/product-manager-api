@@ -143,6 +143,11 @@
             .item {
                 background-color: #fff;
                 padding: 1em;
+                border: 1px solid transparent;
+            }
+
+            .item:hover {
+                border: 1px solid #02a658;
             }
             @media all and (max-width: 1920px) {
                 #list-container {
@@ -190,7 +195,7 @@
 
             const renderItem = cat => {
                 return `
-                        <div class="item" data-cat='${cat.Co_Poducto_Categoria}'>
+                        <a href="/product/${cat.Co_Poducto_Categoria}" class="item" data-cat='${cat.Co_Poducto_Categoria}'>
                             Co_Producto: ${cat.Co_Producto}
                             <br />
                             Nb_Producto: ${cat.Nb_Producto}
@@ -201,7 +206,7 @@
                             <br />
                             Co_Auditoria: ${cat.Co_Auditoria}
                             <br />
-                        </div>
+                        </a>
                     `
             }
 

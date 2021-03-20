@@ -182,14 +182,8 @@
         const updateCategoryById = async (values) => {
             try {
                 const { data } = await axios.put(`/api/category/{{ $id }}`, values)
-                console.log(`/api/category/{{ $id }} `, data.results)
-
-                // const $name = document.getElementById('name')
-                // const $active = document.getElementById('active')
-                //
-                // $name.setAttribute('value', data.results.Nb_Poducto_Categoria)
-                // $active.setAttribute('checked', data.results.St_Activo ? true : false)
-
+                alert('updated')
+                window.location.href = '/categories'
                 return data
             } catch (ex) {
                 console.error(ex)
@@ -200,7 +194,6 @@
         const getCategoryById = async () => {
             try {
                 const { data } = await axios.get(`/api/category/{{ $id }}`)
-                console.log(`/api/category/{{ $id }} `, data.results)
 
                 const $name = document.getElementById('name')
                 const $active = document.getElementById('active')
@@ -259,7 +252,7 @@
     <div id='bottom_logo'></div>
     <div class="menu">
         <a class="a1" href="/">Home</a>
-        <a class="a1" href="/list">Listing</a>
+        <a class="a1" href="/list">Products</a>
         <a class="a1" href="/add-category">Add category</a>
         <a class="a1" href="/categories">Categories</a>
     </div>
