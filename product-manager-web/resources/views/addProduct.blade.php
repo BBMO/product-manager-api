@@ -161,20 +161,29 @@
         }
 
         .form-control {
-            width: 240px;
+            width : 240px;
         }
 
-        .form-check {
-            margin: 0 !important;
+        .form-select {
+            width : 240px;
+            padding: 10px 2px 10px 10px;
         }
     </style>
     <script>
-        const active_id = {{ $id }};
-
         const getCategories = async () => {
             try {
                 const { data } = await axios.get('/api/category')
-                renderCagegory(data.results)
+                const results = [ ...data.results ]
+
+                data.results.forEach(item => {
+                    if (item.categories) {
+                        item.categories.forEach(sCat => {
+                            results.push(sCat)
+                        })
+                    }
+                })
+
+                renderCagegory(results)
                 return data.results
             } catch (ex) {
                 console.error(ex)
@@ -182,76 +191,45 @@
             }
         }
 
-        const updateCategoryById = async (values) => {
-            try {
-                const { data } = await axios.put(`/api/category/{{ $id }}`, values)
-                alert('updated')
-                window.location.href = '/categories'
-                return data
-            } catch (ex) {
-                console.error(ex)
-                return []
-            }
+        const renderCagegory = (results) => {
+            let $container = document.getElementById('checkbox-container')
+
+            const optionsItems = results.map(({ Co_Poducto_Categoria, Nb_Poducto_Categoria }) => {
+                return `<option value='${Co_Poducto_Categoria}'>${Nb_Poducto_Categoria}</option>`
+            }).join('')
+
+            $container.innerHTML  = `
+                <label id="parent-form" for="category">
+                    Choose a parent category:
+                    <select class="form-select" name="category" id="category">
+                        ${optionsItems}
+                    </select>
+                </label>
+            `
         }
-
-        const getCategoryById = async () => {
-            try {
-                const { data } = await axios.get(`/api/category/{{ $id }}`)
-
-                const $name = document.getElementById('name')
-                const $active = document.getElementById('active')
-
-                $name.setAttribute('value', data.results.Nb_Poducto_Categoria)
-                $active.setAttribute('checked', data.results.St_Activo ? true : false)
-
-                return data
-            } catch (ex) {
-                console.error(ex)
-                return []
-            }
-        }
-
 
         window.onload = () => {
-            getCategoryById()
-            document.getElementById('form-info').addEventListener('submit', handleSubmit)
-        }
-
-        const handleSubmit = function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const $name = document.getElementById('name')
-            const $active = document.getElementById('active')
-
-            updateCategoryById({
-                name: $name.value,
-                active: $active.checked ? 1 : 0
-            })
+            getCategories()
         }
     </script>
 </head>
 <body class="antialiased">
 <h1 id="title">Product Manager <strong>API</strong></h1>
 <div id="container">
-    <form id="form-info">
+
+    <form method="post" action="/api/product" enctype="application/x-www-form-urlencoded">
         <label class="form-label" for="name">
-            Category name:
+            Product name:
             <br />
             <input class="form-control" required id="name" type="text" name="name" />
         </label>
 
         <div id="checkbox-container" value="false"></div>
 
-        <div class="mb-3 form-check">
-            <label class="form-check-label">
-                is Active
-                <input class="form-check-input checkbox" id="active" type="checkbox" name="active" value="1" />
-            </label>
-        </div>
-
-
         <br />
-        <input id="submit" type="submit" value="update" class="btn btn-success" />
+        <input id="submit" type="submit" value="submit" class="btn btn-success" />
+
+        <input class="hidden" required id="active" type="number" name="active" value="1" />
     </form>
 </div>
 <div class="bottom-bar">

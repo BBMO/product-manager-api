@@ -21,22 +21,22 @@ Route::get('/list', function () {
     return view('list');
 });
 
-Route::get('/category-detail/:id', function () {
-    return view('categoryDetails');
+Route::get('/category/{id}', function ($id) {
+    return view('categoryDetails', [ 'id' => $id ]);
 });
 
 Route::get('/add-category', function () {
     return view('addCategory');
 });
 
-// Route::get('/', function () {
-//     return view('listar');
-// });
+Route::get('/add-product', function () {
+    return view('addProduct');
+});
 
-// Route::get('/', function () {
-//     return view('delete');
-// });
+Route::get('/product/{id}', function ($id) {
+    return view('product', [ 'id' => $id ]);
+});
 
-// Route::get('/', function () {
-//     return view('update');
-// });
+Route::get('/categories', function () {
+    return view('listCategories');
+});

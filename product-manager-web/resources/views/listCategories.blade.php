@@ -29,10 +29,6 @@
             margin-top: 100px;
             min-height: 85.6vh;
             min-width: 100vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         #title {
@@ -122,55 +118,54 @@
         }
 
 
-        .hidden {
-            opacity: 0;
-            max-height: 1px;
-            overflow: hidden;
-            display: block;
-            visibility: hidden;
-        }
-
-        label {
-            font-weight: bolder;
-        }
-
-        #submit {
-            height: 45px;
-            width: 120px;
-            border-radius: 4px;
-            margin-right: auto;
-            margin-left: auto;
-            transition: all 0.2s linear;
-            box-shadow: 1px 3px 2px #9D9DA0;
-        }
-
-        input {
-            height: 30px;
-            border-radius: 4px;
-            outline: none;
-            margin: 2em 0;
-            padding-left: 1em;
-            padding-right: 1em;
-        }
-
-        form,.form {
+        /*#list-container {
+            overflow-y: scroll;
             display: flex;
-            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+            grid-gap: 2em;
+            margin-top: 2em;
+        }*/
+
+        .item {
+            padding: 1em;
+            height: 200px
+        }
+
+        #container {
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+
+        #list-container {
+            width: 80%;
+            display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            margin-left: 10%;
         }
 
-        .form-control {
-            width: 240px;
+        @media all and (max-width: 768px) {
+            #container {
+                grid-template-columns: 100%;
+            }
         }
 
-        .form-check {
-            margin: 0 !important;
+        .item {
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .item:hover {
+            border: 1px solid #02a658;
+            color: #000 !important;
         }
     </style>
     <script>
-        const active_id = {{ $id }};
-
         const getCategories = async () => {
             try {
                 const { data } = await axios.get('/api/category')
@@ -182,77 +177,50 @@
             }
         }
 
-        const updateCategoryById = async (values) => {
-            try {
-                const { data } = await axios.put(`/api/category/{{ $id }}`, values)
-                alert('updated')
-                window.location.href = '/categories'
-                return data
-            } catch (ex) {
-                console.error(ex)
-                return []
-            }
+        const renderCagegory = (results) => {
+            let $container = document.getElementById('container')
+
+            const optionsItems = results.map(({
+                                                  Co_Poducto_Categoria,
+                                                  Nb_Poducto_Categoria,
+                                                  Co_Poducto_Categoria_Poducto_Categoria,
+                                                  St_Activo,
+                                                  categories
+            }) => {
+                return `
+                    <div id='list-container' class='active-${St_Activo}'>
+                        <div class='card text-dark bg-light' >
+                            <a href="/category/${Co_Poducto_Categoria}" class='card-header'>
+                                Nb_Poducto_Categoria: ${Nb_Poducto_Categoria}
+                            </a>
+                            <a href="/category/${Co_Poducto_Categoria}" class='item'>
+                                St_Activo: ${St_Activo ? 'true' : 'false'}
+                                <br />
+                                Co_Poducto_Categoria: ${Co_Poducto_Categoria}
+                                <br />
+                                Nb_Poducto_Categoria: ${Nb_Poducto_Categoria}
+                                <br />
+                                Co_Poducto_Categoria_Poducto_Categoria: ${Co_Poducto_Categoria_Poducto_Categoria}
+                                <br />
+                                categories: ${categories.length}
+                            </a>
+                        </div>
+                    </div>
+                `
+            }).join('')
+
+            $container.innerHTML  = optionsItems
         }
-
-        const getCategoryById = async () => {
-            try {
-                const { data } = await axios.get(`/api/category/{{ $id }}`)
-
-                const $name = document.getElementById('name')
-                const $active = document.getElementById('active')
-
-                $name.setAttribute('value', data.results.Nb_Poducto_Categoria)
-                $active.setAttribute('checked', data.results.St_Activo ? true : false)
-
-                return data
-            } catch (ex) {
-                console.error(ex)
-                return []
-            }
-        }
-
 
         window.onload = () => {
-            getCategoryById()
-            document.getElementById('form-info').addEventListener('submit', handleSubmit)
+            getCategories()
         }
 
-        const handleSubmit = function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const $name = document.getElementById('name')
-            const $active = document.getElementById('active')
-
-            updateCategoryById({
-                name: $name.value,
-                active: $active.checked ? 1 : 0
-            })
-        }
     </script>
 </head>
 <body class="antialiased">
 <h1 id="title">Product Manager <strong>API</strong></h1>
 <div id="container">
-    <form id="form-info">
-        <label class="form-label" for="name">
-            Category name:
-            <br />
-            <input class="form-control" required id="name" type="text" name="name" />
-        </label>
-
-        <div id="checkbox-container" value="false"></div>
-
-        <div class="mb-3 form-check">
-            <label class="form-check-label">
-                is Active
-                <input class="form-check-input checkbox" id="active" type="checkbox" name="active" value="1" />
-            </label>
-        </div>
-
-
-        <br />
-        <input id="submit" type="submit" value="update" class="btn btn-success" />
-    </form>
 </div>
 <div class="bottom-bar">
     <div id='bottom_logo'></div>
@@ -261,7 +229,7 @@
         <a class="a1" href="/list">Products</a>
         <a class="a1" href="/add-product">Add product</a>
         <a class="a1" href="/add-category">Add category</a>
-        <a class="a1" href="/categories">Categories</a>
+        <a class="a1 active" href="/categories">Categories</a>
     </div>
 </div>
 </body>
