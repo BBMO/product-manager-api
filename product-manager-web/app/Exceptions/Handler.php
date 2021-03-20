@@ -60,9 +60,8 @@ class Handler extends ExceptionHandler
                     $operation = 'update';
                 }
 
-                var_dump($table);
-                $audit = new Audit;
-                $audit->Nb_Tabla = '';
+                /*$audit = new Audit;
+                $audit->Nb_Tabla = $table;
                 $audit->Co_Tipo_Operacion = $operation;
                 $audit->Tx_Sentencia = $sql;
                 $audit->Co_Usuario = (isset($_SESSION['user'])) ? $_SESSION['user']->Co_Usuario : 0;
@@ -71,7 +70,7 @@ class Handler extends ExceptionHandler
                 $audit->Fe_Ins = date('Y-m-d H:i:s');
                 $audit->Tx_Error = $e->getMessage();
                 $audit->St_Error = 1;
-                $audit->save();
+                $audit->save();*/
 
             }
 
