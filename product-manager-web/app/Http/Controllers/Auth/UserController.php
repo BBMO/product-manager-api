@@ -38,8 +38,8 @@ class UserController extends Controller
         $email = User::where('Tx_Email', '=', $request->email)->first();
         $name = User::where('Nb_Usuario', '=', $request->name)->first();
 
-        if(is_null($email)) {
-            if(is_null($name)) {
+        //if(is_null($email)) {
+            //if(is_null($name)) {
                 $user = new User;
                 $user->Nb_Usuario = $request->name;
                 $user->Tx_Email = $request->email;
@@ -52,12 +52,12 @@ class UserController extends Controller
                 $user->St_Activo = (isset($request->active)) ? $request->active : 1;
                 $user->save();
                 return response()->json(['Mensaje'=>'created']);
-            } else {
+            /*} else {
                 return response()->json(['Mensaje'=>'Nombre de usuario ya existe'],404);
             }
         } else {
             return response()->json(['Mensaje'=>'Email ya se uso'],404);
-        }
+        }*/
     }
 
     /**
