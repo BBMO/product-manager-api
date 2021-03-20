@@ -180,6 +180,22 @@
             margin: 0 !important;
         }
 
+        #buttons {
+            display: flex;
+            flex-direction: row;
+            width: 320px;
+        }
+
+        #delete {
+            height: 45px;
+            width: 120px;
+            border-radius: 4px;
+            margin-right: auto;
+            margin-left: auto;
+            transition: all 0.2s linear;
+            box-shadow: 1px 3px 2px #9D9DA0;
+        }
+
         @media all and (max-width: 991px) {
             .menu {
                 justify-content: flex-start;
@@ -208,6 +224,20 @@
                 window.location.href = '/categories'
                 return data
             } catch (ex) {
+                console.error(ex)
+                return []
+            }
+        }
+
+        const deleteProduct = async () => {
+            try {
+                const { data } = await axios.delete(`/api/category/{{ $id }}`)
+
+                alert('Deleted')
+                window.location.href = '/categories'
+                return data
+            } catch (ex) {
+                alert(ex.message)
                 console.error(ex)
                 return []
             }
@@ -247,6 +277,11 @@
                 active: $active.checked ? 1 : 0
             })
         }
+
+        const handleDelete = function () {
+            deleteProduct();
+        }
+
     </script>
 </head>
 <body class="antialiased">
@@ -267,13 +302,14 @@
                     <input class="form-check-input checkbox" id="active" type="checkbox" name="active" value="1" />
                 </label>
             </div>
-
-
-        <br />
-        <input id="submit" type="submit" value="update" class="btn btn-success" />
-    </form>
-</div>
-<div class="bottom_bar navbar navbar-expand-lg navbar-light bg-light">
+            <br />
+            <div id="buttons">
+                <input id="delete" type="button" class="btn btn-danger" value="Delete" onClick="handleDelete()" />
+                <input id="submit" type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+    <div class="bottom_bar navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-brand" id='bottom_logo'></div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

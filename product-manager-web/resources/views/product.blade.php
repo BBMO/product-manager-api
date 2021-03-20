@@ -176,8 +176,29 @@
             width: 240px;
         }
 
+        .form-select {
+            width : 240px;
+            padding: 10px 2px 10px 10px;
+        }
+
         .form-check {
             margin: 0 !important;
+        }
+
+        #buttons {
+            display: flex;
+            flex-direction: row;
+            width: 320px;
+        }
+
+        #delete {
+            height: 45px;
+            width: 120px;
+            border-radius: 4px;
+            margin-right: auto;
+            margin-left: auto;
+            transition: all 0.2s linear;
+            box-shadow: 1px 3px 2px #9D9DA0;
         }
 
         @media all and (max-width: 991px) {
@@ -249,6 +270,20 @@
             }
         }
 
+        const deleteProduct = async () => {
+            try {
+                const { data } = await axios.delete(`/api/product/{{ $id }}`)
+
+                alert('Deleted')
+                window.location.href = '/list'
+                return data
+            } catch (ex) {
+                alert(ex.message)
+                console.error(ex)
+                return []
+            }
+        }
+
         const getProductById = async () => {
             try {
                 const { data } = await axios.get(`/api/product/{{ $id }}`)
@@ -287,6 +322,11 @@
                 category: $category.value
             })
         }
+
+        const handleDelete = function () {
+            deleteProduct();
+        }
+
     </script>
 </head>
 <body class="antialiased">
@@ -301,7 +341,7 @@
 
             <div id="checkbox-container" value="false"></div>
 
-            <div class="mb-3 form-check">
+            <div class="form-check">
             <br />
                 <label class="form-check-label">
                     is Active
@@ -309,8 +349,10 @@
                 </label>
                 <br />
             </div>
-
-        <input id="submit" type="submit" value="update" class="btn btn-success" />
+            <div id="buttons">
+                <input id="delete" type="button" class="btn btn-danger" value="Delete" onClick="handleDelete()" />
+                <input id="submit" type="submit" value="Update" class="btn btn-success" />
+            </div>
     </form>
 </div>
 <div class="bottom_bar navbar navbar-expand-lg navbar-light bg-light">
