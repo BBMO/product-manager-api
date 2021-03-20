@@ -60,17 +60,21 @@ class Handler extends ExceptionHandler
                     $operation = 'update';
                 }
 
-                /*$audit = new Audit;
-                $audit->Nb_Tabla = $table;
-                $audit->Co_Tipo_Operacion = $operation;
-                $audit->Tx_Sentencia = $sql;
-                $audit->Co_Usuario = (isset($_SESSION['user'])) ? $_SESSION['user']->Co_Usuario : 0;
-                $audit->Co_MAC = $mac;
-                $audit->Co_IP = $_SERVER['REMOTE_ADDR'];
-                $audit->Fe_Ins = date('Y-m-d H:i:s');
-                $audit->Tx_Error = $e->getMessage();
-                $audit->St_Error = 1;
-                $audit->save();*/
+                try {
+                    $audit = new Audit;
+                    $audit->Nb_Tabla = $table;
+                    $audit->Co_Tipo_Operacion = $operation;
+                    $audit->Tx_Sentencia = $sql;
+                    $audit->Co_Usuario = (isset($_SESSION['user'])) ? $_SESSION['user']->Co_Usuario : 0;
+                    $audit->Co_MAC = $mac;
+                    $audit->Co_IP = $_SERVER['REMOTE_ADDR'];
+                    $audit->Fe_Ins = date('Y-m-d H:i:s');
+                    $audit->Tx_Error = $e->getMessage();
+                    $audit->St_Error = 1;
+                    $audit->save();
+                } catch (\Exception $e) {
+                    return;
+                }
 
             }
 
