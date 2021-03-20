@@ -27,8 +27,12 @@
             /*align-items: center;*/
             /*flex-direction: column;*/
             margin-top: 100px;
-            min-height: 100vh;
+            min-height: 85.6vh;
             min-width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         #title {
@@ -37,7 +41,7 @@
             font-size: 1.875em;
             line-height: 40px;
             text-align: center;
-            margin: 1em 0;
+            margin-bottom: 1em;
             padding: 0 0 0 4px;
         }
 
@@ -64,7 +68,7 @@
         }
 
         .bottom-bar {
-            height: 80px;
+            height: 11.4vh;
             position: fixed;
             top: 0;
             left: 0;
@@ -137,16 +141,7 @@
             margin-right: auto;
             margin-left: auto;
             transition: all 0.2s linear;
-            border-bottom: 2px solid #C2C2C2;
-        }
-
-        #submit:hover {
-            opacity: 0.5;
-        }
-
-        #submit:active,
-        #submit:focus {
-            border-bottom: 0px solid #C2C2C2;
+            box-shadow: 1px 3px 2px #9D9DA0;
         }
 
         input {
@@ -163,6 +158,14 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        .form-control {
+            width: 240px;
+        }
+
+        .form-check {
+            margin: 0 !important;
         }
     </style>
     <script>
@@ -238,21 +241,24 @@
 <h1 id="title">Product Manager <strong>API</strong></h1>
 <div id="container">
     <form id="form-info">
-        <label for="name">
+        <label class="form-label" for="name">
             Category name:
             <br />
-            <input required id="name" type="text" name="name" />
+            <input class="form-control" required id="name" type="text" name="name" />
         </label>
 
         <div id="checkbox-container" value="false"></div>
 
-        <label>
-            is Active:
-            <input id="active" type="checkbox" name="active" value="1" />
-        </label>
+        <div class="mb-3 form-check">
+            <label class="form-check-label">
+                is Active
+                <input class="form-check-input checkbox" id="active" type="checkbox" name="active" value="1" />
+            </label>
+        </div>
+        
 
         <br />
-        <input id="submit" type="submit" value="update" />
+        <input id="submit" type="submit" value="update" class="btn btn-success" />
     </form>
 </div>
 <div class="bottom-bar">

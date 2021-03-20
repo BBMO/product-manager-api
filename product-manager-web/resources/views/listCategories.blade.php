@@ -27,7 +27,7 @@
             /*align-items: center;*/
             /*flex-direction: column;*/
             margin-top: 100px;
-            min-height: 100vh;
+            min-height: 85.6vh;
             min-width: 100vw;
         }
 
@@ -37,7 +37,7 @@
             font-size: 1.875em;
             line-height: 40px;
             text-align: center;
-            margin: 1em 0;
+            margin-bottom: 1em;
             padding: 0 0 0 4px;
         }
 
@@ -64,7 +64,7 @@
         }
 
         .bottom-bar {
-            height: 80px;
+            height: 11.4vh;
             position: fixed;
             top: 0;
             left: 0;
@@ -118,7 +118,7 @@
         }
 
 
-        #list-container {
+        /*#list-container {
             overflow-y: scroll;
             display: flex;
             justify-content: flex-start;
@@ -129,30 +129,30 @@
             grid-template-columns: 25% 25% 25% 25%;
             grid-gap: 2em;
             margin-top: 2em;
-        }
+        }*/
 
         .item {
-            background-color: #fff;
             padding: 1em;
-        }
-        @media all and (max-width: 1920px) {
-            #list-container {
-                grid-gap: 1em;
-            }
+            height: 200px
         }
 
-        @media all and (max-width: 1600px) {
-            #list-container {
-                grid-template-columns: 50% 50%;
-                grid-gap: 1em;
-            }
+        #container {
+            display: grid;
+            grid-template-columns: 50% 50%;
         }
 
-        @media all and (max-width: 720px) {
-            #list-container {
+        #list-container {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin-left: 10%;
+        }
+
+        @media all and (max-width: 768px) {
+            #container {
                 grid-template-columns: 100%;
-                grid-gap: 1em;
-                padding: 0 1em;
             }
         }
 
@@ -191,17 +191,22 @@
             }) => {
                 return `
                     <div id='list-container' class='active-${St_Activo}'>
-                        <a href="/category/${Co_Poducto_Categoria}" class='item'>
-                            St_Activo: ${St_Activo ? 'true' : 'false'}
-                            <br />
-                            Co_Poducto_Categoria: ${Co_Poducto_Categoria}
-                            <br />
-                            Nb_Poducto_Categoria: ${Nb_Poducto_Categoria}
-                            <br />
-                            Co_Poducto_Categoria_Poducto_Categoria: ${Co_Poducto_Categoria_Poducto_Categoria}
-                            <br />
-                            categories: ${categories.length}
-                        </a>
+                        <div class='card text-dark bg-light' >
+                            <a href="/category/${Co_Poducto_Categoria}" class='card-header'>
+                                Nb_Poducto_Categoria: ${Nb_Poducto_Categoria}
+                            </a>
+                            <a href="/category/${Co_Poducto_Categoria}" class='item'>
+                                St_Activo: ${St_Activo ? 'true' : 'false'}
+                                <br />
+                                Co_Poducto_Categoria: ${Co_Poducto_Categoria}
+                                <br />
+                                Nb_Poducto_Categoria: ${Nb_Poducto_Categoria}
+                                <br />
+                                Co_Poducto_Categoria_Poducto_Categoria: ${Co_Poducto_Categoria_Poducto_Categoria}
+                                <br />
+                                categories: ${categories.length}
+                            </a>
+                        </div>
                     </div>
                 `
             }).join('')
