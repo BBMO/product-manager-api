@@ -185,14 +185,9 @@
         const updateProductById = async (values) => {
             try {
                 const product = await axios.get(`/api/product/{{ $id }}`)
-                console.log({
-                ...product.data.results,
-                ...values,
-                    category: product.data.results.Co_Poducto_Categoria,
-                })
                 const { data } = await axios.put(`/api/product/{{ $id }}`, {
-                    ...product.data.results,
-                    ...values
+                    ...values,
+                    category: `${product.data.results.Co_Poducto_Categoria}`
                 })
 
                 alert('updated')
