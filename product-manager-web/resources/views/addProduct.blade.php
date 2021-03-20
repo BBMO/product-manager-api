@@ -270,6 +270,9 @@
                     <a class="a1 nav-link" href="/" aria-current="page">Home</a>
                 </li>
                 <li class="nav-item">
+                        <a class="a1 nav-link" class="a1" href="/audit" aria-current="page">Audit</a>
+                    </li>
+                <li class="nav-item">
                     <a class="a1 nav-link" href="/list" aria-current="page">Products</a>
                 </li>
                 <li class="nav-item">
