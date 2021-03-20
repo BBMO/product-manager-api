@@ -226,16 +226,46 @@
                 })
 
                 $subCat.addEventListener('change', function() {
-                    const $elms = document.getElementsByClassName('item');
-                    const subCategories = categories.find(cat => {
-                        if (`${cat.Co_Poducto_Categoria}` === `${this.value}`) {
-                            return cat.categories
+                    $subCat.setAttribute('value', this.value)
+                    const $elms = document.getElementsByClassName('item')
+                    const subvValue = this.value
+                    const value = $cat.getAttribute('value')
+
+                    if (subvValue === 'all') {
+                        for (let i = 0; i < $elms.length; i++) {
+                            if ($elms[i].getAttribute('data-cat') !== value) {
+                                const all_sub_cat = categories.find(cat => {
+                                    if (`${cat.Co_Poducto_Categoria}` === `${value}`) {
+                                        return cat.categories
+                                    }
+                                    return null
+                                })
+                                const isInSubCategori = all_sub_cat.categories.find(sub => {
+                                    console.log(sub.Co_Poducto_Categoria, subvValue)
+                                    return (`${sub.Co_Poducto_Categoria}` === $elms[i].getAttribute('data-cat'))
+                                })
+                                if (isInSubCategori) {
+                                    $elms[i].style.display = 'block'
+                                } else {
+                                    $elms[i].style.display = 'none'
+                                }
+                            } else {
+                                $elms[i].style.display = 'block'
+                            }
                         }
-                        return null
-                    })
+                    } else {
+                        for (let i = 0; i < $elms.length; i++) {
+                            if ($elms[i].getAttribute('data-cat') !== subvValue) {
+                                $elms[i].style.display = 'none'
+                            } else {
+                                $elms[i].style.display = 'block'
+                            }
+                        }
+                    }
                 })
 
                 $cat.addEventListener('change', function() {
+                    $cat.setAttribute('value', this.value)
                     const $elms = document.getElementsByClassName('item');
                     const subCategories = categories.find(cat => {
                         if (`${cat.Co_Poducto_Categoria}` === `${this.value}`) {
@@ -258,7 +288,15 @@
                             $elms[i].style.display = 'block'
                         } else {
                             if ($elms[i].getAttribute('data-cat') !== this.value) {
-                                $elms[i].style.display = 'none'
+                                const isInSubCategori = subCategories.categories.find(cat => {
+                                    console.log(cat.Co_Poducto_Categoria, $elms[i].getAttribute('data-cat'))
+                                    return `${cat.Co_Poducto_Categoria}` === `${$elms[i].getAttribute('data-cat')}`
+                                })
+                                if (isInSubCategori) {
+                                    $elms[i].style.display = 'block'
+                                } else {
+                                    $elms[i].style.display = 'none'
+                                }
                             } else {
                                 $elms[i].style.display = 'block'
                             }
