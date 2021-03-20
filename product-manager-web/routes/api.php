@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/user', 'UserController@index');
 Route::post('/user', 'UserController@store');
 Route::get('/user/{id}', 'UserController@show');
-Route::put('/user/{id}', 'Auth\UserController@update');
+Route::put('/user/{id}', 'UserController@update');
 Route::delete('/user/{id}', 'UserController@destroy');
 
 /*Route::post('/login', 'UserController@login');
