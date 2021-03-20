@@ -51,7 +51,7 @@ class UserController extends Controller
                 $user->St_Bloqueo = (isset($request->block)) ? $request->block : 0;
                 $user->St_Activo = (isset($request->active)) ? $request->active : 1;
                 $user->save();
-                return response()->json(User::find($user->Co_Usuario),202);
+                return response()->json(['Mensaje'=>'created']);
             } else {
                 return response()->json(['Mensaje'=>'Nombre de usuario ya existe'],404);
             }
