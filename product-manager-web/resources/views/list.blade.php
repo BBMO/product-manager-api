@@ -37,7 +37,7 @@
                 line-height: 40px;
                 text-align: center;
                 margin: 1em 0;
-                padding: 0 0 0 4px;
+                padding: 90px 0 0 4px;
             }
 
             .body {
@@ -88,7 +88,6 @@
                 justify-content: flex-end;
                 align-items: center;
                 background-color: #FFFFFF;
-                margin-right: 1em;
             }
 
             .container-fluid {
