@@ -180,8 +180,6 @@
         const renderCagegory = (results) => {
             let $container = document.getElementById('container')
 
-            console.log(results)
-
             const optionsItems = results.map(({
                                                   Co_Poducto_Categoria,
                                                   Nb_Poducto_Categoria,
