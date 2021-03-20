@@ -29,6 +29,10 @@ Route::get('/add-category', function () {
     return view('addCategory');
 });
 
+Route::get('/add-product', function () {
+    return view('addProduct');
+});
+
 Route::get('/categories', function () {
     return view('listCategories');
 });

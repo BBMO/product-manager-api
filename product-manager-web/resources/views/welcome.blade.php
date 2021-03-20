@@ -124,6 +124,7 @@
             <div class="menu">
                 <a class="a1 active" href="/">Home</a>
                 <a class="a1" href="/list">Products</a>
+                <a class="a1" href="/add-product">Add product</a>
                 <a class="a1" href="/add-category">Add category</a>
                 <a class="a1" href="/categories">Categories</a>
             </div>
