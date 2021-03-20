@@ -14,6 +14,7 @@ class Home extends Component {
             console.log(result)
         } catch (ex) {
             return Promise.reject(ex.message)
+
         }
     }
 

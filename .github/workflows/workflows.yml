@@ -1,4 +1,4 @@
-name: Lavel Deploy
+name: Lavel Deploy v1
 on:
   push:
     branches:
