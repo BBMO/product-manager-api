@@ -115,13 +115,6 @@
             border-bottom: 2px solid #02a658;
         }
 
-        #container {
-            width: 100%;
-            justify-content: flex-start;
-            align-items: flex-start;
-        }
-
-
         .hidden {
             opacity: 0;
             max-height: 1px;
@@ -167,92 +160,93 @@
         .form-check {
             margin: 0 !important;
         }
+
+        .hidden {
+            display: none;
+        }
+
+        .items-center {
+            justify-content: center;
+        }
+
+        @media (max-width: 767px) {
+            .hide-mv {
+                display: none;
+            }
+        }
     </style>
-    <script>
-        const active_id = {{ $id }};
-
-        const getCategories = async () => {
-            try {
-                const { data } = await axios.get('/api/category')
-                renderCagegory(data.results)
-                return data.results
-            } catch (ex) {
-                console.error(ex)
-                return []
-            }
-        }
-
-        const updateCategoryById = async (values) => {
-            try {
-                const { data } = await axios.put(`/api/category/{{ $id }}`, values)
-                alert('updated')
-                window.location.href = '/categories'
-                return data
-            } catch (ex) {
-                console.error(ex)
-                return []
-            }
-        }
-
-        const getCategoryById = async () => {
-            try {
-                const { data } = await axios.get(`/api/category/{{ $id }}`)
-
-                const $name = document.getElementById('name')
-                const $active = document.getElementById('active')
-
-                $name.setAttribute('value', data.results.Nb_Poducto_Categoria)
-                $active.setAttribute('checked', data.results.St_Activo ? true : false)
-
-                return data
-            } catch (ex) {
-                console.error(ex)
-                return []
-            }
-        }
-
-
-        window.onload = () => {
-            getCategoryById()
-            document.getElementById('form-info').addEventListener('submit', handleSubmit)
-        }
-
-        const handleSubmit = function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const $name = document.getElementById('name')
-            const $active = document.getElementById('active')
-
-            updateCategoryById({
-                name: $name.value,
-                active: $active.checked ? 1 : 0
-            })
-        }
-    </script>
 </head>
 <body class="antialiased">
-<h1 id="title">Product Manager <strong>API</strong></h1>
-<div id="container">
-    <form id="form-info">
-        <label class="form-label" for="name">
-            Category name:
-            <br />
-            <input class="form-control" required id="name" type="text" name="name" />
-        </label>
+<h1 id="title">Product Manager <strong>API AUDIT</strong></h1>
+<div class="container">
 
-        <div id="checkbox-container" value="false"></div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Table</th>
+        </tr>
+        </thead>
+        <tbody>
+            @if($audit)
+                <tr>
+                    <th>Audit ID</th>
+                    <th>{{ $audit->Co_Auditoria }}</th>
+                </tr>
+                <tr>
+                    <th>Table</th>
+                    <th>{{ $audit->Nb_Tabla }}</th>
+                </tr>
+                <tr>
+                    <th>Operation Type</th>
+                    <th>{{ $audit->Co_Tipo_Operacion }}</th>
+                </tr>
+                <tr>
+                    <th>Query</th>
+                    <th>{{ $audit->Tx_Sentencia }}</th>
+                </tr>
+                <tr>
+                    <th>Error</th>
+                    <th>{{ $audit->Tx_Error }}</th>
+                </tr>
+                <tr>
+                    <th>User</th>
+                    <th>
+                        @if($audit->Co_Usuario > 0)
+                            {{ $audit->Co_Usuario }}
+                        @else
+                            Guest
+                        @endif
+                    </th>
+                </tr>
+                <tr>
+                    <th>MAC</th>
+                    <th>{{ $audit->Co_MAC }}</th>
+                </tr>
+                <tr>
+                    <th>IP</th>
+                    <th>{{ $audit->Co_IP }}</th>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>{{ $audit->Fe_Ins }}</th>
+                </tr>
+                <tr>
+                    <th>Parent</th>
+                    <th>
+                        @if($audit->Co_Auditoria_Auditoria > 0)
+                            <a href="/audit/{{$audit->Co_Auditoria_Auditoria}}">{{$audit->Co_Auditoria_Auditoria}} - View</a>
+                        @else
+                            No parent
+                        @endif
+                    </th>
+                </tr>
+            @else
+                No results
+            @endif
+        </tbody>
+    </table>
 
-        <div class="mb-3 form-check">
-            <label class="form-check-label">
-                is Active
-                <input class="form-check-input checkbox" id="active" type="checkbox" name="active" value="1" />
-            </label>
-        </div>
-
-
-        <br />
-        <input id="submit" type="submit" value="update" class="btn btn-success" />
-    </form>
 </div>
 <div class="bottom-bar">
     <div id='bottom_logo'></div>

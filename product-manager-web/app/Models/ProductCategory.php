@@ -56,7 +56,6 @@ class ProductCategory extends Model
         });
 
         ProductCategory::created(function($category) use (&$sql) {
-            var_dump($category->Co_Poducto_Categoria); var_dump($sql->sql);
             if(preg_match('/into `(.*?)`/',$sql->sql,$table)) {
                 $audit = Audit::insertAudit($table[1], $sql, 'insert');
                 $category->Co_Auditoria = $audit->Co_Auditoria;
