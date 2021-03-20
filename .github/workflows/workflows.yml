@@ -4,13 +4,12 @@ on:
     branches:
       - master
 
-defaults:
-  run:
-    working-directory: ./product-manager-web
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./product-manager-web
 
     steps:
       - name: Checkout
