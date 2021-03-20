@@ -220,7 +220,7 @@
 
             $container.innerHTML  = `
                 <label id="parent-form" for="category">
-                    Choose a parent category:
+                    Choose a category:
                     <select class="form-select" name="category" id="category">
                         ${optionsItems}
                     </select>
