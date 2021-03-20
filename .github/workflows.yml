@@ -1,0 +1,44 @@
+name: Lavel Deploy
+on:
+  push:
+    branches:
+      - master
+
+defaults:
+  run:
+    working-directory: ./product-manager-web
+
+build:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Cache composer dependencies
+      uses: actions/cache@v1
+      with:
+        path: vendor
+        key: composer-${{ hashFiles('composer.lock') }}
+
+    - name: Run composer install
+      run: composer install -n --prefer-dist
+      env:
+        APP_ENV: testing
+
+    - name: Prepare Laravel Application
+      run: |
+        cp .env.example .env
+        php artisan key:generate
+
+    - name: Cache yarn dependencies
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: yarn-${{ hashFiles('yarn.lock') }}
+
+    - name: Run yarn
+      run: yarn install
+
+    - name: Initialize
+      run: php artisan serve

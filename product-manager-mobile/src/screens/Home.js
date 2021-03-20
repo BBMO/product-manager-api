@@ -4,7 +4,14 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class Home extends Component {
     handleListing = () => {
-        alert('go to listing')
+        this.props.navigation.push('ProductList')
+    }
+
+    handleCategories = () => {
+        this.props.navigation.push('CategoryList')
+    }
+
+    componentDidMount() {
     }
 
     render () {
@@ -21,7 +28,10 @@ class Home extends Component {
                     />
 
                     <TouchableOpacity style={styles.btn} onPress={this.handleListing}>
-                        <Text style={styles.listBtn}>Go List</Text>
+                        <Text style={styles.listBtn}>Products</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btn} onPress={this.handleCategories}>
+                        <Text style={styles.listBtn}>Categories</Text>
                     </TouchableOpacity>
                 </View>
 
