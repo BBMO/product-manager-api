@@ -63,7 +63,7 @@
             border-radius: 4px;
         }
 
-        .bottom-bar {
+        .bottom_bar {
             height: 11.4vh;
             position: fixed;
             top: 0;
@@ -161,8 +161,6 @@
             padding: 20px;
             margin-left: 10%;
         }
-
-<<<<<<< HEAD
         @media all and (max-width: 1024px) {
             #container {
                 grid-template-columns: 50% 50%;
@@ -186,22 +184,14 @@
             border: 1px solid transparent;
             cursor: pointer;
         }
-=======
         .card{
             border: 1px solid transparent;
             cursor: pointer;
         }
 
->>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
         .card:hover {
             border: 1px solid #02a658;
             color: #000 !important;
-        }
-
-        @media all and (max-width: 768px) {
-            #container {
-                grid-template-columns: 100%;
-            }
         }
     </style>
     <script>
@@ -260,12 +250,10 @@
     </script>
 </head>
 <body class="antialiased">
-<<<<<<< HEAD
-    <h1 id="title">Product Manager <strong>API</strong></h1>
-    <div id="container">
-    </div>
-    
-    <div class="bottom-bar navbar navbar-expand-lg navbar-light bg-light">
+<h1 id="title">Product Manager <strong>API</strong></h1>
+<div id="container">
+</div>
+<div class="bottom_bar navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-brand" id='bottom_logo'></div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -291,20 +279,5 @@
             </ul>
             </div>
         </div>
-=======
-<h1 id="title">Product Manager <strong>API</strong></h1>
-<div id="container">
-</div>
-<div class="bottom-bar">
-    <div id='bottom_logo'></div>
-    <div class="menu">
-        <a class="a1" href="/">Home</a>
-        <a class="a1" href="/audit">Audit</a>
-        <a class="a1" href="/list">Products</a>
-        <a class="a1" href="/add-product">Add product</a>
-        <a class="a1" href="/add-category">Add category</a>
-        <a class="a1 active" href="/categories">Categories</a>
->>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
-    </div>
 </body>
 </html>

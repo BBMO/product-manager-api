@@ -6,12 +6,7 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <title>Laravel</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<<<<<<< HEAD
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
-=======
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
->>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -67,7 +62,7 @@
                 border-radius: 4px;
             }
 
-            .bottom-bar {
+            .bottom_bar {
                 height: 11.4vh;
                 position: fixed;
                 top: 0;
@@ -158,8 +153,7 @@
                 grid-template-columns: 25% 25% 25% 25%;
                 grid-gap: 2em;
                 margin-top: 2em;
-<<<<<<< HEAD
-            }*/
+            } */
 
             .card {
                 background-color: #fff;
@@ -193,29 +187,6 @@
                     justify-content: flex-start;
                     padding: 10px;
                 }
-=======
-            } */
-
-            #list-container {
-                display: grid;
-                grid-template-columns: 32% 32% 32%;
-            }
-
-            .card{
-                border: 1px solid transparent;
-                cursor: pointer;
-                margin: 10px;
-            }
-
-            .card:hover {
-                border: 1px solid #02a658;
-                color: #000 !important;
-            }
-
-            .card-body {
-                padding: 1em;
->>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
-            }
 
             @media all and (max-width: 768px) {
                 #list-container {
@@ -267,11 +238,7 @@
 
             const renderItem = cat => {
                 return `
-<<<<<<< HEAD
                         <div class="item card text-dark bg-light" data-cat='${cat.Co_Poducto_Categoria}'>
-=======
-                    <div class="item card text-dark bg-light" data-cat='${cat.Co_Poducto_Categoria}'>
->>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
                             <a href="/product/${cat.Co_Poducto_Categoria}" class="item card-header" data-cat='${cat.Co_Poducto_Categoria}'>
                                 Nb_Producto: ${cat.Nb_Producto}
                             </a>
@@ -413,8 +380,7 @@
             </div>
         </div>
 
-<<<<<<< HEAD
-        <div class="bottom-bar navbar navbar-expand-lg navbar-light bg-light">
+        <div class="bottom_bar navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <div class="navbar-brand" id='bottom_logo'></div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -438,19 +404,6 @@
                     <a class="a1 nav-link" href="/categories" aria-current="page">Categories</a>
                     </li>
                 </ul>
-                </div>
-=======
-        <div class="bottom-bar">
-            <div id='bottom_logo'></div>
-            <div class="menu">
-                <a class="a1" href="/">Home</a>
-                <a class="a1" href="/audit">Audit</a>
-                <a class="a1 active" href="/list">Products</a>
-                <a class="a1" href="/add-product">Add product</a>
-                <a class="a1" href="/add-category">Add category</a>
-                <a class="a1" href="/categories">Categories</a>
->>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
             </div>
-        </div>
     </body>
 </html>

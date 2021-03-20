@@ -67,7 +67,7 @@
             border-radius: 4px;
         }
 
-        .bottom-bar {
+        .bottom_bar {
             height: 11.4vh;
             position: fixed;
             top: 0;
@@ -247,14 +247,18 @@
             <div id="checkbox-container" value="false"></div>
 
             <br />
-<<<<<<< HEAD
-            <input id="submit" type="submit" value="submit" class="btn btn-success" />
+            <input class="form-control" required id="name" type="text" name="name" />
+        </label>
 
-            <input class="hidden" required id="active" type="number" name="active" value="1" />
-        </form>
-    </div>
-    
-    <div class="bottom-bar navbar navbar-expand-lg navbar-light bg-light">
+        <div id="checkbox-container" value="false"></div>
+
+        <br />
+        <input id="submit" type="submit" value="submit" class="btn btn-success" />
+
+        <input class="hidden" required id="active" type="number" name="active" value="1" />
+    </form>
+</div>
+<div class="bottom_bar navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-brand" id='bottom_logo'></div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -280,28 +284,5 @@
             </ul>
             </div>
         </div>
-=======
-            <input class="form-control" required id="name" type="text" name="name" />
-        </label>
-
-        <div id="checkbox-container" value="false"></div>
-
-        <br />
-        <input id="submit" type="submit" value="submit" class="btn btn-success" />
-
-        <input class="hidden" required id="active" type="number" name="active" value="1" />
-    </form>
-</div>
-<div class="bottom-bar">
-    <div id='bottom_logo'></div>
-    <div class="menu">
-        <a class="a1" href="/">Home</a>
-        <a class="a1" href="/audit">Audit</a>
-        <a class="a1" href="/list">Products</a>
-        <a class="a1 active" href="/add-product">Add product</a>
-        <a class="a1" href="/add-category">Add category</a>
-        <a class="a1" href="/categories">Categories</a>
->>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
-    </div>
 </body>
 </html>
