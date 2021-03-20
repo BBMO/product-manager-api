@@ -31,7 +31,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeUser(Request $request)
+    public function store(Request $request)
     {
         //
 
