@@ -19,15 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/user', 'UserController@index');
-Route::post('/user', 'UserController@store');
-Route::get('/user/{id}', 'UserController@show');
-Route::put('/user/{id}', 'UserController@update');
-Route::delete('/user/{id}', 'UserController@destroy');
-
-/*Route::post('/login', 'UserController@login');
-Route::get('/logout', 'UserController@logout');
-Route::get('/isLogged', 'UserController@isLogged');*/
+Route::get('/user', 'Auth\UserController@index');
+Route::post('/user', 'Auth\UserController@store');
+Route::get('/user/{id}', 'Auth\UserController@show');
+Route::put('/user/{id}', 'Auth\UserController@update');
+Route::delete('/user/{id}', 'Auth\UserController@destroy');
+Route::post('/login', 'Auth\UserController@login');
+Route::get('/logout', 'Auth\UserController@logout');
+Route::get('/isLogged', 'Auth\UserController@isLogged');
 
 Route::get('/category', 'ProductCategoryController@index');
 Route::post('/category', 'ProductCategoryController@store');
