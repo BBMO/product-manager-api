@@ -193,7 +193,17 @@
         const getCategories = async () => {
             try {
                 const { data } = await axios.get('/api/category')
-                renderCagegory(data.results)
+                const results = [ ...data.results ]
+
+                data.results.forEach(item => {
+                    if (item.categories) {
+                        item.categories.forEach(sCat => {
+                            results.push(sCat)
+                        })
+                    }
+                })
+
+                renderCagegory(results)
                 return data.results
             } catch (ex) {
                 console.error(ex)
@@ -201,12 +211,32 @@
             }
         }
 
+        const renderCagegory = async (results) => {
+            let $container = document.getElementById('checkbox-container')
+            const product = await axios.get(`/api/product/{{ $id }}`)
+            const defaultCat = product.data.results.Co_Poducto_Categoria
+
+            const optionsItems = results.map(({ Co_Poducto_Categoria, Nb_Poducto_Categoria }) => {
+                return `<option value='${Co_Poducto_Categoria}' ${defaultCat ==  Co_Poducto_Categoria ? 'selected="selected"': ''}>${Nb_Poducto_Categoria}</option>`
+            }).join('')
+
+            $container.innerHTML  = `
+                <label id="parent-form" for="category">
+                    Choose a parent category:
+                    <select required class="form-select" name="category" id="category">
+                        ${optionsItems}
+                    </select>
+                </label>
+            `
+
+            // document.getElementsByClassName('form-select')[0].setAttribute('value', defaultCat)
+        }
+
         const updateProductById = async (values) => {
             try {
                 const product = await axios.get(`/api/product/{{ $id }}`)
                 const { data } = await axios.put(`/api/product/{{ $id }}`, {
                     ...values,
-                    category: `${product.data.results.Co_Poducto_Categoria}`
                 })
 
                 alert('updated')
@@ -239,6 +269,7 @@
 
         window.onload = () => {
             getProductById()
+            getCategories()
 
             document.getElementById('form-info').addEventListener('submit', handleSubmit)
         }
@@ -248,10 +279,12 @@
             e.stopPropagation();
             const $name = document.getElementById('name')
             const $active = document.getElementById('active')
+            const $category = document.getElementById('category')
 
             updateProductById({
                 name: $name.value,
-                active: $active.checked ? 1 : 0
+                active: $active.checked ? 1 : 0,
+                category: $category.value
             })
         }
     </script>
@@ -261,7 +294,7 @@
     <div id="container">
         <form id="form-info">
             <label class="form-label" for="name">
-                Category name:
+                Product name:
                 <br />
                 <input class="form-control" required id="name" type="text" name="name" />
             </label>
@@ -269,14 +302,14 @@
             <div id="checkbox-container" value="false"></div>
 
             <div class="mb-3 form-check">
+            <br />
                 <label class="form-check-label">
                     is Active
                     <input class="form-check-input checkbox" id="active" type="checkbox" name="active" value="1" />
                 </label>
+                <br />
             </div>
 
-
-        <br />
         <input id="submit" type="submit" value="update" class="btn btn-success" />
     </form>
 </div>
