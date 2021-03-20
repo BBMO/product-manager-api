@@ -67,14 +67,13 @@
             border-radius: 4px;
         }
 
-        .bottom-bar {
+        .bottom_bar {
             height: 11.4vh;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            padding: 0 1em;
-            background-color: #FFFFFF;
+            background-color: #FFFFFF  !important;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -91,9 +90,23 @@
 
         .menu {
             display: flex;
-            justify-items: center;
+            justify-content: flex-end;
             align-items: center;
+            background-color: #FFFFFF;
         }
+
+        .container-fluid {
+            padding: 0;
+        }
+
+        .navbar-brand {
+            margin-left: 1.5em;
+        }
+
+        .navbar-toggler {
+            margin-right: 1.5em;
+        }
+
 
         .menu a {
             color: #434343;
@@ -168,6 +181,13 @@
             width : 240px;
             padding: 10px 2px 10px 10px;
         }
+
+        @media all and (max-width: 991px) {
+            .menu {
+                justify-content: flex-start;
+                padding: 10px;
+            }
+        }
     </style>
     <script>
         const getCategories = async () => {
@@ -217,23 +237,24 @@
     </script>
 </head>
 <body class="antialiased">
-<h1 id="title">Product Manager <strong>API</strong></h1>
-<div id="container">
+    <h1 id="title">Product Manager <strong>API</strong></h1>
+    <div id="container">
 
-    <div class="form">
-        <div class="mb-3 form-check">
-            <label class="form-check-label" for="checkbox">
-                <input type="checkbox" class="form-check-input checkbox" id="checkbox" name="checkbox" />
-                Is Children Category
-            </label>
+        <div class="form">
+            <div class="mb-3 form-check">
+                <label class="form-check-label" for="checkbox">
+                    <input type="checkbox" class="form-check-input checkbox" id="checkbox" name="checkbox" />
+                    Is Children Category
+                </label>
+            </div>
         </div>
-    </div>
 
-    <form method="post" action="/api/category" enctype="application/x-www-form-urlencoded">
-        <label class="form-label" for="name">
-            Category name:
-            <br />
-            <input class="form-control" required id="name" type="text" name="name" />
+        <form method="post" action="/api/category" enctype="application/x-www-form-urlencoded">
+            <label class="form-label" for="name">
+                Category name:
+                <br />
+                <input class="form-control" required id="name" type="text" name="name" />
+            </label>
         </label>
 
         <div id="checkbox-container" value="false"></div>
@@ -244,15 +265,35 @@
         <input class="hidden" required id="active" type="number" name="active" value="1" />
     </form>
 </div>
-<div class="bottom-bar">
-    <div id='bottom_logo'></div>
-    <div class="menu">
-        <a class="a1" href="/">Home</a>
-        <a class="a1" href="/list">Products</a>
-        <a class="a1" href="/add-product">Add product</a>
-        <a class="a1 active" href="/add-category">Add category</a>
-        <a class="a1" href="/categories">Categories</a>
-    </div>
-</div>
+
+    <div class="bottom_bar navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-brand" id='bottom_logo'></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class=" menu collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/" aria-current="page">Home</a>
+                </li>
+                <li class="nav-item">
+                        <a class="a1 nav-link" class="a1" href="/audit" aria-current="page">Audit</a>
+                    </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/list" aria-current="page">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/add-product" aria-current="page">Add product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 active nav-link" href="/add-category" aria-current="page">Add category</a>
+                </li>
+                <li class="nav-item">
+                <a class="a1 nav-link" href="/categories" aria-current="page">Categories</a>
+                </li>
+            </ul>
+            </div>
+        </div>
 </body>
 </html>
