@@ -145,7 +145,7 @@
 
         .item {
             padding: 1em;
-            height: 200px
+            height: 200px;
         }
 
         #container {
@@ -162,6 +162,7 @@
             margin-left: 10%;
         }
 
+<<<<<<< HEAD
         @media all and (max-width: 1024px) {
             #container {
                 grid-template-columns: 50% 50%;
@@ -185,9 +186,22 @@
             border: 1px solid transparent;
             cursor: pointer;
         }
+=======
+        .card{
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+>>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
         .card:hover {
             border: 1px solid #02a658;
             color: #000 !important;
+        }
+
+        @media all and (max-width: 768px) {
+            #container {
+                grid-template-columns: 100%;
+            }
         }
     </style>
     <script>
@@ -205,6 +219,8 @@
         const renderCagegory = (results) => {
             let $container = document.getElementById('container')
 
+            console.log(results)
+
             const optionsItems = results.map(({
                                                   Co_Poducto_Categoria,
                                                   Nb_Poducto_Categoria,
@@ -218,7 +234,7 @@
                             <a href="/category/${Co_Poducto_Categoria}" class='card-header'>
                                 Nb_Poducto_Categoria: ${Nb_Poducto_Categoria}
                             </a>
-                            <a href="/category/${Co_Poducto_Categoria}" class='item'>
+                            <a href="/category/${Co_Poducto_Categoria}" class='item card-body'>
                                 St_Activo: ${St_Activo ? 'true' : 'false'}
                                 <br />
                                 Co_Poducto_Categoria: ${Co_Poducto_Categoria}
@@ -244,6 +260,7 @@
     </script>
 </head>
 <body class="antialiased">
+<<<<<<< HEAD
     <h1 id="title">Product Manager <strong>API</strong></h1>
     <div id="container">
     </div>
@@ -274,6 +291,20 @@
             </ul>
             </div>
         </div>
+=======
+<h1 id="title">Product Manager <strong>API</strong></h1>
+<div id="container">
+</div>
+<div class="bottom-bar">
+    <div id='bottom_logo'></div>
+    <div class="menu">
+        <a class="a1" href="/">Home</a>
+        <a class="a1" href="/audit">Audit</a>
+        <a class="a1" href="/list">Products</a>
+        <a class="a1" href="/add-product">Add product</a>
+        <a class="a1" href="/add-category">Add category</a>
+        <a class="a1 active" href="/categories">Categories</a>
+>>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
     </div>
 </body>
 </html>

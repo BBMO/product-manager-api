@@ -280,6 +280,7 @@
             </div>
 
 
+<<<<<<< HEAD
             <br />
             <input id="submit" type="submit" value="update" class="btn btn-success" />
         </form>
@@ -310,6 +311,21 @@
             </ul>
             </div>
         </div>
+=======
+        <br />
+        <input id="submit" type="submit" value="update" class="btn btn-success" />
+    </form>
+</div>
+<div class="bottom-bar">
+    <div id='bottom_logo'></div>
+    <div class="menu">
+        <a class="a1" href="/">Home</a>
+        <a class="a1" href="/audit">Audit</a>
+        <a class="a1" href="/list">Products</a>
+        <a class="a1" href="/add-product">Add product</a>
+        <a class="a1" href="/add-category">Add category</a>
+        <a class="a1" href="/categories">Categories</a>
+>>>>>>> 9b056d912f9cbdd913189d56c9f996d9d96cb2b3
     </div>
 </body>
 </html>
