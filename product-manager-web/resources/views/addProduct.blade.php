@@ -243,11 +243,6 @@
                 <br />
                 <input class="form-control" required id="name" type="text" name="name" />
             </label>
-
-            <div id="checkbox-container" value="false"></div>
-
-            <br />
-            <input class="form-control" required id="name" type="text" name="name" />
         </label>
 
         <div id="checkbox-container" value="false"></div>
