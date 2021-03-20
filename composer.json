@@ -55,7 +55,7 @@
       "@php product-manager-web/artisan package:discover --ansi"
     ],
     "post-root-package-install": [
-      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+      "@php -r \"file_exists('product-manager-web/.env') || copy('product-manager-web/.env.example', 'product-manager-web/.env');\""
     ],
     "post-create-project-cmd": [
       "@php product-manager-web/artisan key:generate --ansi"
