@@ -82,8 +82,8 @@ class ProductController extends Controller
                 $product->Co_Poducto_Categoria = (isset($request->category)) ? $request->category : $product->Co_Poducto_Categoria;
                 $product->St_Activo = (isset($request->active)) ? $request->active : $product->St_Activo;
                 $product->save();
-                return redirect('/product/' . $product->Co_Producto);
-                // return response()->json(Product::find($product->Co_Producto),202);
+                // return redirect('/product/' . $product->Co_Producto);
+                return response()->json(Product::find($product->Co_Producto),202);
             }
         }
     }
