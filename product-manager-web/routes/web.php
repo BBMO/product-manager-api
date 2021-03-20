@@ -33,18 +33,10 @@ Route::get('/add-product', function () {
     return view('addProduct');
 });
 
+Route::get('/product/{id}', function ($id) {
+    return view('product', [ 'id' => $id ]);
+});
+
 Route::get('/categories', function () {
     return view('listCategories');
 });
-
-// Route::get('/', function () {
-//     return view('listar');
-// });
-
-// Route::get('/', function () {
-//     return view('delete');
-// });
-
-// Route::get('/', function () {
-//     return view('update');
-// });
