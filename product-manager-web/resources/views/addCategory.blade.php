@@ -230,7 +230,7 @@
     </div>
 
     <form method="post" action="/api/category" enctype="application/x-www-form-urlencoded">
-        <label for="name">
+        <label class="form-label" for="name">
             Category name:
             <br />
             <input class="form-control" required id="name" type="text" name="name" />
