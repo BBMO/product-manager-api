@@ -1,1 +1,1 @@
-web: composer warmup && product-manager-web/vendor/bin/heroku-php-apache2 product-manager-web/public/
+web: composer warmup && $(composer config bin-dir)/heroku-php-apache2 product-manager-web/public/
