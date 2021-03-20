@@ -9,7 +9,8 @@
   "license": "MIT",
   "scripts": {
     "post-install-cmd": [
-      "cd product-manager-web && composer install"
+      "cd product-manager-web",
+      "composer install"
     ]
   }
 }
