@@ -209,6 +209,7 @@
 
             const renderItem = cat => {
                 return `
+<<<<<<< HEAD
                         <div class="item card text-dark bg-light" data-cat='${cat.Co_Poducto_Categoria}'>
                             <a href="/product/${cat.Co_Poducto_Categoria}" class="item card-header" data-cat='${cat.Co_Poducto_Categoria}'>
                                 Nb_Producto: ${cat.Nb_Producto}
@@ -226,6 +227,20 @@
                                 <br />
                             </a>
                         </div>
+=======
+                        <a href="/product/${cat.Co_Producto}" class="item" data-cat='${cat.Co_Poducto_Categoria}'>
+                            Co_Producto: ${cat.Co_Producto}
+                            <br />
+                            Nb_Producto: ${cat.Nb_Producto}
+                            <br />
+                            Co_Poducto_Categoria: ${cat.Co_Poducto_Categoria}
+                            <br />
+                            St_Activo: ${cat.St_Activo}
+                            <br />
+                            Co_Auditoria: ${cat.Co_Auditoria}
+                            <br />
+                        </a>
+>>>>>>> cb39f47d2f7c9d4bdf713eff97ca59ffa2544e0e
                     `
             }
 
@@ -356,6 +371,7 @@
             <div class="menu">
                 <a class="a1" href="/">Home</a>
                 <a class="a1 active" href="/list">Products</a>
+                <a class="a1" href="/add-product">Add product</a>
                 <a class="a1" href="/add-category">Add category</a>
                 <a class="a1" href="/categories">Categories</a>
             </div>

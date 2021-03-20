@@ -10,7 +10,7 @@ class Home extends Component {
 
     async getProducts () {
         try {
-            const result = await fetch(`http://0.0.0.0:8000/api/product`)
+            const result = await fetch(`http://127.0.0.1:8000/api/product`)
             console.log(result)
         } catch (ex) {
             return Promise.reject(ex.message)
@@ -30,7 +30,7 @@ class Home extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>
-                    Products
+                    Categories
                 </Text>
             </View>
         );
