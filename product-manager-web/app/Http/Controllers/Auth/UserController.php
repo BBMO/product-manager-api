@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
+use App\Models\Logbook;
 
 class UserController extends Controller
 {
@@ -31,7 +34,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        
+
         $email = User::where('Tx_Email', '=', $request->email)->first();
         $name = User::where('Nb_Usuario', '=', $request->name)->first();
 
@@ -41,7 +44,7 @@ class UserController extends Controller
                 $user->Nb_Usuario = $request->name;
                 $user->Tx_Email = $request->email;
                 $user->Nu_Movil = $request->phone;
-                $user->Tx_Clave = bcrypt($request->password);
+                $user->Tx_Clave = sha1($request->password);
                 $user->Tx_Patron = (isset($request->pattern)) ? $request->pattern : '';
                 $user->Nu_Intentos = (isset($request->attempts)) ? $request->attempts : 1;
                 $user->Fe_Recuperacion = date('Y-m-d H:i:s');
@@ -85,7 +88,7 @@ class UserController extends Controller
         $user->Nb_Usuario = (isset($request->name)) ? $request->name : $user->Nb_Usuario;
         $user->Tx_Email = (isset($request->email)) ? $request->email : $user->Tx_Email;
         $user->Nu_Movil = (isset($request->phone)) ? $request->phone : $user->Nu_Movil;
-        $user->Tx_Clave = (isset($request->password)) ? bcrypt($request->password) : $user->Tx_Clave;
+        $user->Tx_Clave = (isset($request->password)) ? sha1($request->password) : $user->Tx_Clave;
         $user->Tx_Patron = (isset($request->pattern)) ? $request->pattern : '';
         $user->Nu_Intentos = (isset($request->attempts)) ? $request->attempts : $user->Nu_Intentos;
         $user->Fe_Recuperacion = (isset($request->date)) ? $request->date : $user->Fe_Recuperacion;
@@ -117,5 +120,62 @@ class UserController extends Controller
         return response()->json([
             'results' => 'deteted'
         ]);
+    }
+
+    public function login(Request $request) {
+        try{
+            $password = sha1($request->password);
+
+            $user = DB::table('t00100_usuario')->select('*')->where('Tx_Email', $request->email)->whereRaw('Tx_Clave = "'.$password.'"')->get();
+
+            if(count($user) > 0) {
+                if(!isset($_SESSION)) {
+                    session_start();
+                }
+                $_SESSION['user'] = $user[0];
+
+                $logbook = new Logbook;
+                $previous_logbook = $logbook->getLastRecordByUser($user[0]->Co_Usuario);
+                if($previous_logbook) {
+                    $logbook->Co_Bitacora_Previo = $previous_logbook->Co_Bitacora;
+                }
+
+                $logbook->Co_Usuario = $user[0]->Co_Usuario;
+                $logbook->Fe_Ins = date('Y-m-d H:i:s');
+                $logbook->save();
+
+                return response()->json([
+                    'results' => 'logged'
+                ]);
+            }
+
+            return response()->json([
+                'results' => 'Email or password Incorrect'
+            ]);
+
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'results' => 'Email or password Incorrect'
+            ]);
+        }
+    }
+
+
+    public function logout(Request $request) {
+        if(!isset($_SESSION)) {
+            session_start();
+        }
+        session_destroy();
+
+        return response()->json([
+            'results' => 'Logout'
+        ]);
+    }
+
+    public function isLogged(Request $request) {
+        if(!isset($_SESSION)) {
+            session_start();
+        }
+        return (isset($_SESSION['user'])) ? 1 : 0;
     }
 }

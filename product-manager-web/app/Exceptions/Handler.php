@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler
                 $audit->Nb_Tabla = $table;
                 $audit->Co_Tipo_Operacion = $operation;
                 $audit->Tx_Sentencia = $sql;
-                $audit->Co_Usuario = (Auth::check()) ? Auth::user()->Co_Usuario : 0;
+                $audit->Co_Usuario = (isset($_SESSION['user'])) ? $_SESSION['user']->Co_Usuario : 0;
                 $audit->Co_MAC = $mac;
                 $audit->Co_IP = $_SERVER['REMOTE_ADDR'];
                 $audit->Fe_Ins = date('Y-m-d H:i:s');
