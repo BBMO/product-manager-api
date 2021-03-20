@@ -2,7 +2,7 @@ name: Lavel Deploy v1
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
