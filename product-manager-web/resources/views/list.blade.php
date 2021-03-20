@@ -88,6 +88,7 @@
                 justify-content: flex-end;
                 align-items: center;
                 background-color: #FFFFFF;
+                margin-right: 1em;
             }
 
             .container-fluid {
@@ -174,6 +175,7 @@
             #list-container {
                 display: grid;
                 grid-template-columns: 25% 25% 25% 25%;
+                margin-top: 30px;
             }
 
             @media all and (max-width: 1024px) {
@@ -187,6 +189,7 @@
                     justify-content: flex-start;
                     padding: 10px;
                 }
+            }
 
             @media all and (max-width: 768px) {
                 #list-container {
@@ -205,13 +208,8 @@
             }
 
             .input {
-                margin-bottom: 25px
+                margin-bottom: 25px;
             }
-
-            .form-select {
-                margin-top: -10px
-            }
-        }
         </style>
         <script>
             let active_category = null

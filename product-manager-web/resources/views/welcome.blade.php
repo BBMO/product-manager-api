@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -70,8 +73,7 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                padding: 0 1em;
-                background-color: #FFFFFF;
+                background-color: #FFFFFF !important;
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
@@ -88,8 +90,21 @@
 
             .menu {
                 display: flex;
-                justify-items: center;
+                justify-content: flex-end;
                 align-items: center;
+                background-color: #FFFFFF;
+            }
+
+            .container-fluid {
+                padding: 0;
+            }
+
+            .navbar-brand {
+                margin-left: 1.5em;
+            }
+
+            .navbar-toggler {
+                margin-right: 1.5em;
             }
 
             .menu a {
@@ -111,6 +126,15 @@
             .menu a:hover {
                 border-bottom: 2px solid #02a658;
             }
+
+            @media all and (max-width: 991px) {
+                .bottom-bar {
+                    top: 0;
+                }
+                .menu {
+                    justify-content: flex-start;
+                }
+                }
         </style>
     </head>
     <body class="antialiased">
@@ -118,17 +142,33 @@
 
         <h1 id="title">Product Manager <strong>API</strong></h1>
 
-        <div class="bottom-bar">
-            <div id='bottom_logo'></div>
-
-            <div class="menu">
-                <a class="a1 active" href="/">Home</a>
-                <a class="a1" href="/audit">Audit</a>
-                <a class="a1" href="/list">Products</a>
-                <a class="a1" href="/add-product">Add product</a>
-                <a class="a1" href="/add-category">Add category</a>
-                <a class="a1" href="/categories">Categories</a>
+        <div class="bottom-bar navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="navbar-brand" id='bottom_logo'></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class=" menu collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="a1 active nav-link" href="/" aria-current="page">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="a1 nav-link" class="a1" href="/audit" aria-current="page">Audit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="a1 nav-link" href="/list" aria-current="page">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="a1 nav-link" href="/add-product" aria-current="page">Add product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="a1 nav-link" href="/add-category" aria-current="page">Add category</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="a1 nav-link" href="/categories" aria-current="page">Categories</a>
+                    </li>
+                </ul>
             </div>
-        </div>
     </body>
 </html>
