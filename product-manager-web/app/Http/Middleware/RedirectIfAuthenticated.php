@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        $guards = empty($guards) ? [null] : $guards;
+        /*$guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
@@ -27,6 +27,17 @@ class RedirectIfAuthenticated
             }
         }
 
+        return $next($request);*/
+
+        if(!isset($_SESSION)) {
+            session_start();
+        }
+
+        if ($request->session()->has('user') || isset($_SESSION['user'])) {
+            return redirect('/account');
+        }
+
         return $next($request);
+
     }
 }

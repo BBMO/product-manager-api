@@ -132,7 +132,8 @@ class UserController extends Controller
                 if(!isset($_SESSION)) {
                     session_start();
                 }
-                $_SESSION['user'] = $user[0];
+                $_SESSION['user'] = $user[0]; //for logbook
+                $request->session()->put('user', $user[0]); //for web view
 
                 $logbook = new Logbook;
                 $previous_logbook = $logbook->getLastRecordByUser($user[0]->Co_Usuario);
@@ -144,19 +145,27 @@ class UserController extends Controller
                 $logbook->Fe_Ins = date('Y-m-d H:i:s');
                 $logbook->save();
 
-                return response()->json([
-                    'results' => 'logged'
-                ]);
+                //return response()->json([
+                //    'results' => 'logged'
+                //]);
+
+                return redirect('/');
+
             }
 
-            return response()->json([
-                'results' => 'Email or password Incorrect'
-            ]);
+            //return response()->json([
+            //    'results' => 'Email or password Incorrect'
+            //]);
+
+            $message = 'Email or password Incorrect';
+            return view('login', compact('message'));
 
         } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'results' => 'Email or password Incorrect'
-            ]);
+            //return response()->json([
+            //    'results' => 'Email or password Incorrect'
+            //]);
+            $message = 'Email or password Incorrect';
+            return view('login', compact('message'));
         }
     }
 

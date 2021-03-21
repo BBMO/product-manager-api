@@ -168,6 +168,9 @@
                     <li class="nav-item">
                     <a class="a1 nav-link" href="/categories" aria-current="page">Categories</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="a1 active nav-link" href="/login" aria-current="page">Cuenta</a>
+                    </li>
                 </ul>
             </div>
     </body>
