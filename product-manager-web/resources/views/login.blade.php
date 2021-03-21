@@ -181,6 +181,9 @@
             <input class="form-control" required id="password" type="password" name="password" />
         </label>
 
+        <p class="form-label" for="name">
+            <span>Don't have an account? <a href="/register"> Register here</a></span>
+        </p>
         <br />
         <input id="submit" type="submit" value="Login" class="btn btn-success" />
     </form>
@@ -197,22 +200,17 @@
                     <a class="a1 nav-link" href="/" aria-current="page">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="a1 nav-link" class="a1" href="/audit" aria-current="page">Audit</a>
-                </li>
-                <li class="nav-item">
                     <a class="a1 nav-link" href="/list" aria-current="page">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="a1 nav-link" href="/add-product" aria-current="page">Add product</a>
-                </li>
-                <li class="nav-item">
-                    <a class="a1 nav-link" href="/add-category" aria-current="page">Add category</a>
                 </li>
                 <li class="nav-item">
                     <a class="a1 nav-link" href="/categories" aria-current="page">Categories</a>
                 </li>
+                <li class="nav-item">
+                    <a class="a1 active nav-link" href="/login" aria-current="page">Sign in</a>
+                </li>
             </ul>
         </div>
     </div>
+</div>
 </body>
 </html>

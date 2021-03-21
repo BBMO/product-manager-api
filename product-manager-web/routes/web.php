@@ -110,7 +110,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::get('/audit', function () {
-        $list = DB::table('t99999_auditoria')->paginate(15);
+        $list = DB::table('t99999_auditoria')->orderBy('Co_Auditoria', 'desc')->paginate(15);
         return view('audit', compact('list'));
     });
 
@@ -120,7 +120,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::get('/logbook', function () {
-        $list = DB::table('t99999_bitacora')->paginate(15);
+        $list = DB::table('t99999_bitacora')->orderBy('Co_Bitacora', 'desc')->paginate(15);
         return view('logbook', compact('list'));
     });
 

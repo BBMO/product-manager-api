@@ -118,7 +118,7 @@
             transition: border 0.2s linear;
             text-align: center;
         }
-        
+
 
         .menu a:hover {
             border-bottom: 2px solid #02a658;
@@ -241,8 +241,11 @@
                     <a class="a1 nav-link" href="/" aria-current="page">Home</a>
                 </li>
                 <li class="nav-item">
-                        <a class="a1 active nav-link" class="a1" href="/audit" aria-current="page">Audit</a>
-                    </li>
+                    <a class="a1 active nav-link" class="a1" href="/audit" aria-current="page">Audit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" class="a1" href="/logbook" aria-current="page">Logbook</a>
+                </li>
                 <li class="nav-item">
                     <a class="a1 nav-link" href="/list" aria-current="page">Products</a>
                 </li>
@@ -253,10 +256,17 @@
                     <a class="a1 nav-link" href="/add-category" aria-current="page">Add category</a>
                 </li>
                 <li class="nav-item">
-                <a class="a1 nav-link" href="/categories" aria-current="page">Categories</a>
+                    <a class="a1 nav-link" href="/categories" aria-current="page">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/account" aria-current="page">Edit account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/logout" aria-current="page">Sign out</a>
                 </li>
             </ul>
             </div>
         </div>
+</div>
 </body>
 </html>
