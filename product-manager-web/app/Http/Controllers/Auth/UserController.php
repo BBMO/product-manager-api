@@ -53,10 +53,10 @@ class UserController extends Controller
                 $user->save();
                 return response()->json(User::find($user->Co_Usuario),202);
             } else {
-                return response()->json(['Mensaje'=>'Nombre de usuario ya existe'],404);
+                return response()->json(['result'=>'error'],404);
             }
         } else {
-            return response()->json(['Mensaje'=>'Email ya se uso'],404);
+            return response()->json(['result'=>'error'],404);
         }
     }
 

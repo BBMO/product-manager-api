@@ -156,7 +156,7 @@
 
     </style>
     <script>
-        const createUser = async (values) => {
+        /*const createUser = async (values) => {
             try {
                 const { data } = await axios.post(`/api/user/`, {
                     ...values,
@@ -197,14 +197,14 @@
                 }
             });
 
-        }
+        }*/
 
     </script>
 </head>
 <body class="antialiased">
 <h1 id="title">Product Manager <strong>User Register</strong></h1>
 <div class="container">
-    <form id="form" method="post" action="/api/user" enctype="application/x-www-form-urlencoded">
+    <form id="form" method="post" action="/register" enctype="application/x-www-form-urlencoded">
         {{ csrf_field() }}
 
         <label class="form-label" for="name">

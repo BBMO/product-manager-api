@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -44,6 +45,35 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', function (\Illuminate\Http\Request $request) {
         return view('register');
     });
+
+    Route::post('/register', function (\Illuminate\Http\Request $request) {
+        $email = User::where('Tx_Email', '=', $request->email)->first();
+        $name = User::where('Nb_Usuario', '=', $request->name)->first();
+
+        if(is_null($email)) {
+            if(is_null($name)) {
+                $user = new User;
+                $user->Nb_Usuario = $request->name;
+                $user->Tx_Email = $request->email;
+                $user->Nu_Movil = $request->phone;
+                $user->Tx_Clave = sha1($request->password);
+                $user->Tx_Patron = (isset($request->pattern)) ? $request->pattern : '';
+                $user->Nu_Intentos = (isset($request->attempts)) ? $request->attempts : 1;
+                $user->Fe_Recuperacion = date('Y-m-d H:i:s');
+                $user->St_Bloqueo = (isset($request->block)) ? $request->block : 0;
+                $user->St_Activo = (isset($request->active)) ? $request->active : 1;
+                $user->save();
+                return view('login');
+            } else {
+                $message = 'Algo salio mal';
+                return view('login', compact('message'));
+            }
+        } else {
+            $message = 'Algo salio mal';
+            return view('login', compact('message'));
+        }
+    });
+
 });
 
 Route::group(['middleware' => 'auth'], function () {
