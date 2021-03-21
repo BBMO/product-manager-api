@@ -277,6 +277,9 @@
                     <a class="a1 nav-link" class="a1" href="/audit" aria-current="page">Audit</a>
                 </li>
                 <li class="nav-item">
+                    <a class="a1 nav-link" class="a1" href="/audit" aria-current="page">Logbook</a>
+                </li>
+                <li class="nav-item">
                     <a class="a1 nav-link" href="/list" aria-current="page">Products</a>
                 </li>
                 <li class="nav-item">
@@ -288,8 +291,15 @@
                 <li class="nav-item">
                     <a class="a1 nav-link" href="/categories" aria-current="page">Categories</a>
                 </li>
+                <li class="nav-item">
+                    <a class="a1 active nav-link" href="/account" aria-current="page">Edit account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/logout" aria-current="page">Sign out</a>
+                </li>
             </ul>
         </div>
     </div>
+</div>
 </body>
 </html>

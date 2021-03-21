@@ -67,14 +67,13 @@
             border-radius: 4px;
         }
 
-        .bottom-bar {
+        .bottom_bar {
             height: 11.4vh;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            padding: 0 1em;
-            background-color: #FFFFFF;
+            background-color: #FFFFFF  !important;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -91,8 +90,21 @@
 
         .menu {
             display: flex;
-            justify-items: center;
+            justify-content: flex-end;
             align-items: center;
+            background-color: #FFFFFF;
+        }
+
+        .container-fluid {
+            padding: 0;
+        }
+
+        .navbar-brand {
+            margin-left: 1.5em;
+        }
+
+        .navbar-toggler {
+            margin-right: 1.5em;
         }
 
         .menu a {
@@ -114,6 +126,13 @@
         .menu a.active {
             border-bottom: 2px solid #02a658;
         }
+
+        #container {
+            width: 100%;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
 
         .hidden {
             opacity: 0;
@@ -154,24 +173,18 @@
         }
 
         .form-control {
-            width: 240px;
+            width : 240px;
         }
 
-        .form-check {
-            margin: 0 !important;
+        .form-select {
+            width : 240px;
+            padding: 10px 2px 10px 10px;
         }
 
-        .hidden {
-            display: none;
-        }
-
-        .items-center {
-            justify-content: center;
-        }
-
-        @media (max-width: 767px) {
-            .hide-mv {
-                display: none;
+        @media all and (max-width: 991px) {
+            .menu {
+                justify-content: flex-start;
+                padding: 10px;
             }
         }
     </style>
@@ -248,15 +261,43 @@
     </table>
 
 </div>
-<div class="bottom-bar">
-    <div id='bottom_logo'></div>
-    <div class="menu">
-        <a class="a1" href="/">Home</a>
-        <a class="a1" href="/audit">Audit</a>
-        <a class="a1" href="/list">Products</a>
-        <a class="a1" href="/add-product">Add product</a>
-        <a class="a1" href="/add-category">Add category</a>
-        <a class="a1" href="/categories">Categories</a>
+<div class="bottom_bar navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="navbar-brand" id='bottom_logo'></div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class=" menu collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/" aria-current="page">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 active nav-link" class="a1" href="/audit" aria-current="page">Audit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" class="a1" href="/logbook" aria-current="page">Logbook</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/list" aria-current="page">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/add-product" aria-current="page">Add product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/add-category" aria-current="page">Add category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/categories" aria-current="page">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/account" aria-current="page">Edit account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="a1 nav-link" href="/logout" aria-current="page">Sign out</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 </body>
