@@ -236,7 +236,7 @@
             const renderItem = cat => {
                 return `
                         <div class="item card text-dark bg-light" data-cat='${cat.Co_Poducto_Categoria}'>
-                            <a href="/product/${cat.Co_Poducto_Categoria}" class="item card-header" data-cat='${cat.Co_Poducto_Categoria}'>
+                            <a href="/product/${cat.Co_Producto}" class="item card-header" data-cat='${cat.Co_Poducto_Categoria}'>
                                 Nb_Producto: ${cat.Nb_Producto}
                             </a>
                             <a href="/product/${cat.Co_Producto}" class="item  card-body" data-cat='${cat.Co_Poducto_Categoria}'>
