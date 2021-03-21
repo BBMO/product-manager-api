@@ -20,7 +20,7 @@ class Authenticate extends Middleware
         }
     }
 
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$guards)
     {
         if(!isset($_SESSION)) {
             session_start();
