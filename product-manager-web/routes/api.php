@@ -24,9 +24,6 @@ Route::post('/user', 'Auth\UserController@store');
 Route::get('/user/{id}', 'Auth\UserController@show');
 Route::put('/user/{id}', 'Auth\UserController@update');
 Route::delete('/user/{id}', 'Auth\UserController@destroy');
-Route::post('/login', 'Auth\UserController@login');
-Route::get('/logout', 'Auth\UserController@logout');
-Route::get('/isLogged', 'Auth\UserController@isLogged');
 
 Route::get('/category', 'ProductCategoryController@index');
 Route::post('/category', 'ProductCategoryController@store');
